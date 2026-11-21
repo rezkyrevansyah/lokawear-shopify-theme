@@ -142,7 +142,7 @@
         <form action="{{ routes.cart_url }}" method="post" class="cart-drawer__footer">
           <p class="cart-drawer__subtotal">
             <span class="label">{{ 'cart.subtotal' | t }}</span>
-            <span>{{ cart.total_price | money_with_currency }}</span>
+            <span>{{ cart.total_price | money }}</span>
           </p>
           <p class="text-muted cart-drawer__taxes">{{ 'cart.taxes_and_shipping' | t }}</p>
           <button type="submit" name="checkout" class="button cart-drawer__checkout">
