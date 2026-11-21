@@ -50,7 +50,25 @@
     }
   },
   "collections": {
-    "title": "Collections"
+    "title": "Collections",
+    "eyebrow": "Shop",
+    "filter": "Filter",
+    "sort": "Sort",
+    "apply": "Apply",
+    "product_count": {
+      "one": "1 product",
+      "other": "{{ count }} products"
+    },
+    "remove_filter": "Remove filter",
+    "clear_all": "Clear all",
+    "show_results": {
+      "one": "Show 1 result",
+      "other": "Show {{ count }} results"
+    },
+    "price_from": "From",
+    "price_to": "To",
+    "pagination": "Pagination",
+    "empty": "No products match these filters."
   },
   "gift_card": {
     "add_to_apple_wallet": "Add to Apple Wallet",
@@ -66,10 +84,14 @@
   },
   "search": {
     "title": "Search",
-    "placeholder": "Search articles, pages, or products",
+    "placeholder": "Search lurik, tenun, batik…",
     "submit": "Search",
-    "no_results_html": "No results found for {{ terms }}",
-    "results_for_html": "{{ count }} results found for {{ terms }}"
+    "no_results_html": "No results for “{{ terms }}”.",
+    "results_for_html": "{{ count }} results found for {{ terms }}",
+    "collections": "Collections",
+    "products": "Products",
+    "popular": "Popular searches",
+    "view_all": "See all results for “{{ terms }}”"
   },
   "header": {
     "open_menu": "Open menu",

@@ -123,7 +123,9 @@
       "sticky": "Sticky header",
       "mega_promo": "Mega menu image",
       "mega_promo_parent": "Menu item",
-      "mega_promo_parent_info": "Title of the top-level menu item this image appears under, for example Shop."
+      "mega_promo_parent_info": "Title of the top-level menu item this image appears under, for example Shop.",
+      "search_suggestions": "Popular searches",
+      "search_suggestions_info": "Comma-separated terms shown in the search drawer."
     },
     "cart_drawer": {
       "name": "Cart drawer",
@@ -194,6 +196,12 @@
     },
     "product_recommendations": {
       "name": "Product recommendations"
+    },
+    "collection": {
+      "products_per_page": "Products per page"
+    },
+    "predictive_search": {
+      "name": "Predictive search"
     }
   }
 }

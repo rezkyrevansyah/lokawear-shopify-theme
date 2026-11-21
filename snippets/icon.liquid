@@ -1,7 +1,7 @@
 {% doc %}
   Inline line icon, 1.5px stroke, inherits currentColor.
 
-  @param {string} name - account | cart | search | menu | close | chevron | arrow | instagram | tiktok | facebook | pinterest
+  @param {string} name - account | cart | search | menu | close | filter | chevron | arrow | instagram | tiktok | facebook | pinterest
   @param {string} [class] - Extra class on the svg
 
   @example
@@ -30,6 +30,8 @@
       <path d="M3 7h18M3 12h18M3 17h18"/>
     {%- when 'close' -%}
       <path d="M6 6l12 12M18 6 6 18"/>
+    {%- when 'filter' -%}
+      <path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>
     {%- when 'chevron' -%}
       <path d="m6 9 6 6 6-6"/>
     {%- when 'arrow' -%}

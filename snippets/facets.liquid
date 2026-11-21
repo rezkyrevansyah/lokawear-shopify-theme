@@ -1,0 +1,361 @@
+{% doc %}
+  Filter drawer, sort, result count and active filter pills for collection and search pages.
+  Parts marked [data-facets-part] are swapped by assets/facets.js after every change.
+  Without JS the form submits as a normal GET request.
+
+  @param {string} section_id - Section id, used for element ids and the Section Rendering API
+  @param {object[]} filters - collection.filters or search.filters
+  @param {object[]} sort_options - collection.sort_options or search.sort_options
+  @param {string} sort_by - Current sort value
+  @param {number} results_count - Number of products after filtering
+  @param {string} clear_url - URL that removes every filter
+  @param {string} [terms] - Search terms, kept as a hidden field on the search page
+
+  @example
+  {% render 'facets', section_id: section.id, filters: collection.filters, sort_options: collection.sort_options, sort_by: collection.sort_by, results_count: collection.products_count, clear_url: collection.url %}
+{% enddoc %}
+
+{%- liquid
+  assign form_id = 'FacetForm-' | append: section_id
+  assign drawer_id = 'FacetDrawer-' | append: section_id
+  assign active_count = 0
+  for filter in filters
+    if filter.type == 'price_range'
+      if filter.min_value.value != nil or filter.max_value.value != nil
+        assign active_count = active_count | plus: 1
+      endif
+    else
+      assign active_count = active_count | plus: filter.active_values.size
+    endif
+  endfor
+-%}
+
+<div class="toolbar" data-facets-part="toolbar">
+  {%- if filters.size > 0 -%}
+    <button type="button" class="toolbar__filter label" data-dialog-open="{{ drawer_id }}" aria-haspopup="dialog">
+      {% render 'icon', name: 'filter' %}
+      {{ 'collections.filter' | t }}
+      {%- if active_count > 0 %} ({{ active_count }}){% endif -%}
+    </button>
+  {%- endif -%}
+  <p class="toolbar__count text-muted" role="status">{{ 'collections.product_count' | t: count: results_count }}</p>
+  <div class="toolbar__sort">
+    <label for="Sort-{{ section_id }}" class="label">{{ 'collections.sort' | t }}</label>
+    <select id="Sort-{{ section_id }}" class="toolbar__select" name="sort_by" form="{{ form_id }}">
+      {%- for option in sort_options -%}
+        <option value="{{ option.value | escape }}" {% if option.value == sort_by %}selected{% endif %}>
+          {{- option.name | escape -}}
+        </option>
+      {%- endfor -%}
+    </select>
+    <noscript>
+      <button type="submit" form="{{ form_id }}" class="button button--secondary">{{ 'collections.apply' | t }}</button>
+    </noscript>
+  </div>
+</div>
+
+{%- if active_count > 0 -%}
+  <ul class="pills" role="list" data-facets-part="active">
+    {%- for filter in filters -%}
+      {%- if filter.type == 'price_range' -%}
+        {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+          {%- liquid
+            assign min = filter.min_value.value | default: 0 | money_without_trailing_zeros
+            assign max = filter.max_value.value | default: filter.range_max | money_without_trailing_zeros
+          -%}
+          <li>
+            <a href="{{ filter.url_to_remove }}" class="pill" data-facet-link>
+              {{ min }}–{{ max }}
+              {% render 'icon', name: 'close' %}
+              <span class="visually-hidden">{{ 'collections.remove_filter' | t }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+      {%- else -%}
+        {%- for value in filter.active_values -%}
+          <li>
+            <a href="{{ value.url_to_remove }}" class="pill" data-facet-link>
+              {{ value.label }}
+              {% render 'icon', name: 'close' %}
+              <span class="visually-hidden">{{ 'collections.remove_filter' | t }}</span>
+            </a>
+          </li>
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <li><a href="{{ clear_url }}" class="pills__clear" data-facet-link>{{ 'collections.clear_all' | t }}</a></li>
+  </ul>
+{%- else -%}
+  <div data-facets-part="active"></div>
+{%- endif -%}
+
+{%- if filters.size > 0 -%}
+  <dialog id="{{ drawer_id }}" class="drawer drawer--left facets" scroll-lock aria-labelledby="{{ drawer_id }}-title">
+    <form id="{{ form_id }}" class="drawer__inner" data-facet-form>
+      <div class="drawer__header">
+        <h2 id="{{ drawer_id }}-title" class="label">{{ 'collections.filter' | t }}</h2>
+        <button type="button" class="icon-button" data-dialog-close aria-label="{{ 'accessibility.close' | t }}">
+          {% render 'icon', name: 'close' %}
+        </button>
+      </div>
+
+      <div class="drawer__body" data-facets-part="filters">
+        {%- if terms != blank -%}
+          <input type="hidden" name="q" value="{{ terms | escape }}">
+          <input type="hidden" name="type" value="product">
+          <input type="hidden" name="options[prefix]" value="last">
+        {%- endif -%}
+
+        {%- for filter in filters -%}
+          <details class="facet" open>
+            <summary class="label">
+              {{ filter.label }}
+              {% render 'icon', name: 'chevron' %}
+            </summary>
+
+            {%- if filter.type == 'price_range' -%}
+              {%- liquid
+                assign min_value = filter.min_value.value | money_without_currency | remove: ','
+                assign max_value = filter.max_value.value | money_without_currency | remove: ','
+                assign range_max = filter.range_max | money_without_currency | remove: ','
+              -%}
+              <div class="facet__price">
+                <div class="field">
+                  <label for="{{ filter.min_value.param_name | handleize }}-{{ section_id }}" class="text-muted">
+                    {{- 'collections.price_from' | t -}}
+                  </label>
+                  <input
+                    class="input"
+                    type="number"
+                    inputmode="decimal"
+                    id="{{ filter.min_value.param_name | handleize }}-{{ section_id }}"
+                    name="{{ filter.min_value.param_name }}"
+                    value="{% if filter.min_value.value != nil %}{{ min_value }}{% endif %}"
+                    placeholder="0"
+                    min="0"
+                    max="{{ range_max }}"
+                  >
+                </div>
+                <div class="field">
+                  <label for="{{ filter.max_value.param_name | handleize }}-{{ section_id }}" class="text-muted">
+                    {{- 'collections.price_to' | t -}}
+                  </label>
+                  <input
+                    class="input"
+                    type="number"
+                    inputmode="decimal"
+                    id="{{ filter.max_value.param_name | handleize }}-{{ section_id }}"
+                    name="{{ filter.max_value.param_name }}"
+                    value="{% if filter.max_value.value != nil %}{{ max_value }}{% endif %}"
+                    placeholder="{{ range_max }}"
+                    min="0"
+                    max="{{ range_max }}"
+                  >
+                </div>
+              </div>
+            {%- else -%}
+              <ul class="facet__list" role="list">
+                {%- for value in filter.values -%}
+                  {%- assign input_id = 'Filter-' | append: section_id | append: '-' | append: filter.param_name | append: '-' | append: forloop.index | handleize -%}
+                  {%- assign disabled = false -%}
+                  {%- if value.count == 0 and value.active == false -%}
+                    {%- assign disabled = true -%}
+                  {%- endif -%}
+                  <li>
+                    <input
+                      type="checkbox"
+                      class="facet__checkbox"
+                      id="{{ input_id }}"
+                      name="{{ value.param_name }}"
+                      value="{{ value.value }}"
+                      {% if value.active %}
+                        checked
+                      {% endif %}
+                      {% if disabled %}
+                        disabled
+                      {% endif %}
+                    >
+                    <label for="{{ input_id }}" class="facet__label">
+                      {%- if value.swatch.color -%}
+                        <span class="swatch" style="--swatch: {{ value.swatch.color }}"></span>
+                      {%- endif -%}
+                      {{ value.label }}
+                      <span class="text-muted">({{ value.count }})</span>
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+          </details>
+        {%- endfor -%}
+      </div>
+
+      <div class="facets__footer" data-facets-part="apply">
+        <a href="{{ clear_url }}" class="button button--secondary" data-facet-link>{{ 'collections.clear_all' | t }}</a>
+        <button type="submit" class="button">{{ 'collections.show_results' | t: count: results_count }}</button>
+      </div>
+    </form>
+  </dialog>
+{%- endif -%}
+
+{% stylesheet %}
+  /* Page heading and results wrapper for collection and search pages */
+  .collection-hero {
+    display: grid;
+    gap: 1rem;
+    padding-block: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .collection-hero__text {
+    max-width: 36rem;
+    color: var(--color-muted);
+    font-size: 1.0625rem;
+  }
+  facet-filters {
+    display: block;
+    padding-bottom: 5rem;
+  }
+  .results__grid {
+    margin-top: 2rem;
+    transition: opacity 200ms ease;
+  }
+  facet-filters[aria-busy='true'] .results__grid {
+    opacity: 0.4;
+  }
+  .results__empty {
+    display: grid;
+    justify-items: center;
+    gap: 1.5rem;
+    padding-block: 4rem;
+    text-align: center;
+  }
+
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    padding-block: 0.75rem;
+    border-block: 1px solid var(--color-line);
+  }
+  .toolbar__filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .toolbar__filter .icon {
+    width: 1.125rem;
+  }
+  .toolbar__count {
+    font-size: 0.875rem;
+  }
+  .toolbar__sort {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+  }
+  .toolbar__select {
+    min-height: 2.75rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--color-line);
+    font-size: 0.875rem;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0;
+    list-style: none;
+  }
+  .pills__clear {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .facet {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .facet summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.5rem;
+    list-style: none;
+    cursor: pointer;
+  }
+  .facet summary::-webkit-details-marker {
+    display: none;
+  }
+  .facet summary .icon {
+    width: 1rem;
+    transition: transform 200ms ease;
+  }
+  .facet[open] summary .icon {
+    transform: rotate(180deg);
+  }
+  .facet__list {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0 0 1.25rem;
+    list-style: none;
+  }
+  .facet__label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    cursor: pointer;
+  }
+  .facet__checkbox {
+    position: absolute;
+    opacity: 0;
+  }
+  .facet__label::before {
+    content: '';
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    border: 1px solid var(--color-text);
+    border-radius: 2px;
+  }
+  .facet__checkbox:checked + .facet__label::before {
+    background: var(--color-primary)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F6F1E9' stroke-width='3'%3E%3Cpath d='m5 12 5 5 9-10'/%3E%3C/svg%3E")
+      center / 0.875rem no-repeat;
+    border-color: var(--color-primary);
+  }
+  .facet__checkbox:focus-visible + .facet__label::before {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+  .facet__checkbox:disabled + .facet__label {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .facet__price {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+  }
+  .facets__footer {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem calc(1rem + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--color-line);
+  }
+  .facets__footer .button {
+    padding-inline: 1rem;
+    white-space: nowrap;
+  }
+{% endstylesheet %}

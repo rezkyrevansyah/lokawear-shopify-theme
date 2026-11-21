@@ -39,6 +39,45 @@ if ('IntersectionObserver' in window) {
   document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-revealed'));
 }
 
+// Search drawer: as-you-type results from the Predictive Search API, rendered by sections/predictive-search.liquid.
+// The form still submits to /search, so it works without JS.
+class PredictiveSearch extends HTMLElement {
+  connectedCallback() {
+    this.input = this.querySelector('input[name="q"]');
+    this.results = this.querySelector('[data-predictive-results]');
+    this.initial = this.results.innerHTML;
+    this.input.addEventListener('input', () => {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => this.search(this.input.value.trim()), 250);
+    });
+  }
+
+  async search(terms) {
+    this.request?.abort();
+    if (!terms) {
+      this.results.innerHTML = this.initial;
+      return;
+    }
+    this.request = new AbortController();
+    const params = new URLSearchParams({
+      q: terms,
+      section_id: 'predictive-search',
+      'resources[type]': 'product,collection,query',
+      'resources[limit]': '4',
+      'resources[options][fields]': 'title,product_type,variants.title,tag',
+    });
+    try {
+      const response = await fetch(`${this.dataset.url}?${params}`, { signal: this.request.signal });
+      const fresh = new DOMParser().parseFromString(await response.text(), 'text/html');
+      this.results.innerHTML = fresh.querySelector('[data-predictive-results]')?.innerHTML ?? '';
+    } catch (error) {
+      if (error.name !== 'AbortError') this.results.innerHTML = this.initial;
+    }
+  }
+}
+
+customElements.define('predictive-search', PredictiveSearch);
+
 // Prev/next buttons for native scroll-snap sliders: [data-slider] > [data-slider-track] + [data-slide="-1|1"].
 // Delegated, so it keeps working after the theme editor re-renders a section.
 document.addEventListener('click', (event) => {

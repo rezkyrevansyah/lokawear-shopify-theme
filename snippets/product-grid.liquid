@@ -1,0 +1,87 @@
+{% doc %}
+  Product grid with numbered pagination, shared by collection and search results.
+  Must be rendered inside {% paginate %}. Links carry data-facet-link so facets.js loads them in place.
+
+  @param {product[]} products - Products on the current page
+  @param {object} paginate - The paginate object
+
+  @example
+  {% render 'product-grid', products: collection.products, paginate: paginate %}
+{% enddoc %}
+
+<ul class="product-grid" role="list">
+  {%- for product in products -%}
+    {%- liquid
+      assign eager = false
+      if forloop.index <= 4 and paginate.current_page == 1
+        assign eager = true
+      endif
+    -%}
+    <li>{% render 'product-card', product: product, sizes: '(min-width: 990px) 24vw, (min-width: 750px) 32vw, 50vw', eager: eager %}</li>
+  {%- endfor -%}
+</ul>
+
+{%- if paginate.pages > 1 -%}
+  <nav class="pagination" aria-label="{{ 'collections.pagination' | t }}">
+    {%- if paginate.previous -%}
+      <a href="{{ paginate.previous.url }}" class="icon-button pagination__prev" data-facet-link aria-label="{{ 'accessibility.previous' | t }}">
+        {% render 'icon', name: 'arrow' %}
+      </a>
+    {%- endif -%}
+    {%- for part in paginate.parts -%}
+      {%- if part.is_link -%}
+        <a href="{{ part.url }}" class="pagination__page" data-facet-link>{{ part.title }}</a>
+      {%- elsif part.title == paginate.current_page -%}
+        <span class="pagination__page" aria-current="page">{{ part.title }}</span>
+      {%- else -%}
+        <span class="pagination__page">{{ part.title }}</span>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if paginate.next -%}
+      <a href="{{ paginate.next.url }}" class="icon-button" data-facet-link aria-label="{{ 'accessibility.next' | t }}">
+        {% render 'icon', name: 'arrow' %}
+      </a>
+    {%- endif -%}
+  </nav>
+{%- endif -%}
+
+{% stylesheet %}
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem 1rem;
+    padding: 0;
+    list-style: none;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    margin-top: 4rem;
+  }
+  .pagination__page {
+    display: grid;
+    place-items: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    text-decoration: none;
+  }
+  .pagination__page[aria-current='page'] {
+    border-bottom: 1px solid var(--color-text);
+  }
+  .pagination__prev .icon {
+    transform: rotate(180deg);
+  }
+  @media (min-width: 750px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (min-width: 990px) {
+    .product-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3.5rem 1.5rem;
+    }
+  }
+{% endstylesheet %}
