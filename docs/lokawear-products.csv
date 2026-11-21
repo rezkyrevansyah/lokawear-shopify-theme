@@ -1,0 +1,155 @@
+Handle,Title,Body (HTML),Vendor,Product Category,Type,Tags,Published,Option1 Name,Option1 Value,Option2 Name,Option2 Value,Option3 Name,Option3 Value,Variant SKU,Variant Grams,Variant Inventory Tracker,Variant Inventory Qty,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Compare At Price,Variant Requires Shipping,Variant Taxable,Variant Barcode,Image Src,Image Position,Image Alt Text,Gift Card,SEO Title,SEO Description,Variant Image,Variant Weight Unit,Status,Fabric origin (product.metafields.custom.fabric_origin),Technique (product.metafields.custom.technique),Care instructions (product.metafields.custom.care_instructions)
+lurik-overshirt,Lurik Overshirt,"<p>A boxy overshirt cut from hand-loomed lurik. The stripe is woven in, never printed, so it softens and settles with every wash.</p>",Lokawear,,Outer & Shirts,"handwoven, bestseller",TRUE,Color,Indigo,Size,S,,,LW-LO-IND-S,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,https://images.unsplash.com/photo-1589810635657-232948472d98?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Lurik Overshirt, front",FALSE,,"A boxy overshirt cut from hand-loomed lurik. The stripe is woven in, never printed, so it softens and settles with every wash.",,g,active,"Klaten, Central Java",Hand-loomed lurik (ATBM),"Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+lurik-overshirt,,,,,,,,,Indigo,,M,,,LW-LO-IND-M,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,https://images.unsplash.com/photo-1666037747220-d1ada9f62c59?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Lurik Overshirt, detail",,,,,g,,,,
+lurik-overshirt,,,,,,,,,Indigo,,L,,,LW-LO-IND-L,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,https://images.unsplash.com/photo-1708712147976-82c1f4e39ea8?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Lurik Overshirt, fabric texture",,,,,g,,,,
+lurik-overshirt,,,,,,,,,Indigo,,XL,,,LW-LO-IND-XL,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-overshirt,,,,,,,,,Natural,,S,,,LW-LO-NAT-S,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-overshirt,,,,,,,,,Natural,,M,,,LW-LO-NAT-M,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-overshirt,,,,,,,,,Natural,,L,,,LW-LO-NAT-L,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-overshirt,,,,,,,,,Natural,,XL,,,LW-LO-NAT-XL,450,shopify,12,deny,manual,98.00,115.00,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-chore-jacket,Tenun Chore Jacket,"<p>Our workwear chore jacket with a panel of tenun ikat across the back. Three patch pockets, horn buttons, a cut that layers over everything.</p>",Lokawear,,Outer & Shirts,"new, handwoven",TRUE,Color,Olive,Size,S,,,LW-TCJ-OLI-S,450,shopify,12,deny,manual,128.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1583401915223-1a3ee3b57299?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Tenun Chore Jacket, front",FALSE,,"Our workwear chore jacket with a panel of tenun ikat across the back. Three patch pockets, horn buttons, a cut that layers over everything.",,g,active,"Troso, Jepara",Handwoven tenun ikat,"Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+tenun-chore-jacket,,,,,,,,,Olive,,M,,,LW-TCJ-OLI-M,450,shopify,0,deny,manual,128.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1691053318576-4bf08315e877?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Tenun Chore Jacket, detail",,,,,g,,,,
+tenun-chore-jacket,,,,,,,,,Olive,,L,,,LW-TCJ-OLI-L,450,shopify,12,deny,manual,128.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1748141951488-9c9fb9603daf?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Tenun Chore Jacket, fabric texture",,,,,g,,,,
+tenun-chore-jacket,,,,,,,,,Olive,,XL,,,LW-TCJ-OLI-XL,450,shopify,12,deny,manual,128.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-chore-jacket,,,,,,,,,Natural,,S,,,LW-TCJ-NAT-S,450,shopify,12,deny,manual,128.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-chore-jacket,,,,,,,,,Natural,,M,,,LW-TCJ-NAT-M,450,shopify,12,deny,manual,128.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-chore-jacket,,,,,,,,,Natural,,L,,,LW-TCJ-NAT-L,450,shopify,12,deny,manual,128.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-chore-jacket,,,,,,,,,Natural,,XL,,,LW-TCJ-NAT-XL,450,shopify,12,deny,manual,128.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-work-shirt,Indigo Work Shirt,<p>A plain-weave work shirt dipped in natural indigo until the blue runs deep. It will fade to your shape over the years.</p>,Lokawear,,Outer & Shirts,bestseller,TRUE,Color,Indigo,Size,S,,,LW-IWS-IND-S,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1740711152088-88a009e877bb?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Indigo Work Shirt, front",FALSE,,A plain-weave work shirt dipped in natural indigo until the blue runs deep. It will fade to your shape over the years.,,g,active,Yogyakarta,Natural indigo dye,"Wash separately in cold water for the first few washes.
+Indigo fades with wear; that is the point.
+Dry in the shade. Do not bleach."
+indigo-work-shirt,,,,,,,,,Indigo,,M,,,LW-IWS-IND-M,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1545042746-ec9e5a59b359?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Indigo Work Shirt, detail",,,,,g,,,,
+indigo-work-shirt,,,,,,,,,Indigo,,L,,,LW-IWS-IND-L,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1761808070289-595a9df13616?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Indigo Work Shirt, fabric texture",,,,,g,,,,
+indigo-work-shirt,,,,,,,,,Indigo,,XL,,,LW-IWS-IND-XL,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-work-shirt,,,,,,,,,Washed Indigo,,S,,,LW-IWS-WAS-S,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-work-shirt,,,,,,,,,Washed Indigo,,M,,,LW-IWS-WAS-M,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-work-shirt,,,,,,,,,Washed Indigo,,L,,,LW-IWS-WAS-L,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-work-shirt,,,,,,,,,Washed Indigo,,XL,,,LW-IWS-WAS-XL,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-kimono-jacket,Batik Cap Kimono Jacket,"<p>An easy, open kimono jacket with a belt. The lining is stamped batik cap, so the pattern shows only when it moves.</p>",Lokawear,,Outer & Shirts,new,TRUE,Color,Sage,Size,S,,,LW-BCKJ-SAG-S,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,https://images.unsplash.com/photo-1589785238916-8ce013216f4e?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Batik Cap Kimono Jacket, front",FALSE,,"An easy, open kimono jacket with a belt. The lining is stamped batik cap, so the pattern shows only when it moves.",,g,active,"Pekalongan, Central Java","Batik cap, copper-stamped","Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+batik-cap-kimono-jacket,,,,,,,,,Sage,,M,,,LW-BCKJ-SAG-M,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,https://images.unsplash.com/photo-1761516659497-8478e39d2b26?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Batik Cap Kimono Jacket, detail",,,,,g,,,,
+batik-cap-kimono-jacket,,,,,,,,,Sage,,L,,,LW-BCKJ-SAG-L,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,https://images.unsplash.com/photo-1721134619759-223b27177bb5?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Batik Cap Kimono Jacket, fabric texture",,,,,g,,,,
+batik-cap-kimono-jacket,,,,,,,,,Sage,,XL,,,LW-BCKJ-SAG-XL,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-kimono-jacket,,,,,,,,,Charcoal,,S,,,LW-BCKJ-CHA-S,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-kimono-jacket,,,,,,,,,Charcoal,,M,,,LW-BCKJ-CHA-M,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-kimono-jacket,,,,,,,,,Charcoal,,L,,,LW-BCKJ-CHA-L,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-kimono-jacket,,,,,,,,,Charcoal,,XL,,,LW-BCKJ-CHA-XL,450,shopify,12,deny,manual,118.00,138.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-long-shirt,Lurik Long Shirt,"<p>A long, collarless shirt in fine lurik stripe. Wear it buttoned, open over a tee, or belted as a light dress.</p>",Lokawear,,Outer & Shirts,handwoven,TRUE,Color,White Stripe,Size,S,,,LW-LLS-WHI-S,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1708712147976-82c1f4e39ea8?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Lurik Long Shirt, front",FALSE,,"A long, collarless shirt in fine lurik stripe. Wear it buttoned, open over a tee, or belted as a light dress.",,g,active,"Klaten, Central Java",Hand-loomed lurik (ATBM),"Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+lurik-long-shirt,,,,,,,,,White Stripe,,M,,,LW-LLS-WHI-M,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1666037747220-d1ada9f62c59?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Lurik Long Shirt, detail",,,,,g,,,,
+lurik-long-shirt,,,,,,,,,White Stripe,,L,,,LW-LLS-WHI-L,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1757382603782-839864de55d7?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Lurik Long Shirt, fabric texture",,,,,g,,,,
+lurik-long-shirt,,,,,,,,,White Stripe,,XL,,,LW-LLS-WHI-XL,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-long-shirt,,,,,,,,,Indigo Stripe,,S,,,LW-LLS-IND-S,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-long-shirt,,,,,,,,,Indigo Stripe,,M,,,LW-LLS-IND-M,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-long-shirt,,,,,,,,,Indigo Stripe,,L,,,LW-LLS-IND-L,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-long-shirt,,,,,,,,,Indigo Stripe,,XL,,,LW-LLS-IND-XL,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-boxy-tee,Batik Cap Boxy Tee,"<p>A heavyweight boxy tee with a small batik cap mark at the hem. Dropped shoulders, cropped just above the hip.</p>",Lokawear,,Tops,,TRUE,Color,Black,Size,S,,,LW-BCBT-BLA-S,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1759572095384-1a7e646d0d4f?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Batik Cap Boxy Tee, front",FALSE,,"A heavyweight boxy tee with a small batik cap mark at the hem. Dropped shoulders, cropped just above the hip.",,g,active,"Pekalongan, Central Java","Batik cap, copper-stamped","Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+batik-cap-boxy-tee,,,,,,,,,Black,,M,,,LW-BCBT-BLA-M,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1759572095317-3a96f9a98e2b?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Batik Cap Boxy Tee, detail",,,,,g,,,,
+batik-cap-boxy-tee,,,,,,,,,Black,,L,,,LW-BCBT-BLA-L,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1761516659766-c092d4b1209d?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Batik Cap Boxy Tee, fabric texture",,,,,g,,,,
+batik-cap-boxy-tee,,,,,,,,,Black,,XL,,,LW-BCBT-BLA-XL,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-boxy-tee,,,,,,,,,Mint,,S,,,LW-BCBT-MIN-S,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-boxy-tee,,,,,,,,,Mint,,M,,,LW-BCBT-MIN-M,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-boxy-tee,,,,,,,,,Mint,,L,,,LW-BCBT-MIN-L,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,g,,,,
+batik-cap-boxy-tee,,,,,,,,,Mint,,XL,,,LW-BCBT-MIN-XL,450,shopify,12,deny,manual,42.00,,TRUE,TRUE,,,,,,,,,g,,,,
+linen-camp-shirt,Linen Camp Shirt,"<p>A short-sleeve camp shirt in washed linen with a soft gathered hem. Made for long, humid afternoons.</p>",Lokawear,,Tops,bestseller,TRUE,Color,Natural,Size,S,,,LW-LCS-NAT-S,450,shopify,12,deny,manual,58.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1713881676551-b16f22ce4719?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Linen Camp Shirt, front",FALSE,,"A short-sleeve camp shirt in washed linen with a soft gathered hem. Made for long, humid afternoons.",,g,active,"Bandung, West Java","Washed linen, hand-finished","Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+linen-camp-shirt,,,,,,,,,Natural,,M,,,LW-LCS-NAT-M,450,shopify,12,deny,manual,58.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1757382603782-839864de55d7?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Linen Camp Shirt, detail",,,,,g,,,,
+linen-camp-shirt,,,,,,,,,Natural,,L,,,LW-LCS-NAT-L,450,shopify,12,deny,manual,58.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1721134619759-223b27177bb5?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Linen Camp Shirt, fabric texture",,,,,g,,,,
+linen-camp-shirt,,,,,,,,,Natural,,XL,,,LW-LCS-NAT-XL,450,shopify,12,deny,manual,58.00,,TRUE,TRUE,,,,,,,,,g,,,,
+linen-camp-shirt,,,,,,,,,Sand,,S,,,LW-LCS-SAN-S,450,shopify,12,deny,manual,58.00,,TRUE,TRUE,,,,,,,,,g,,,,
+linen-camp-shirt,,,,,,,,,Sand,,M,,,LW-LCS-SAN-M,450,shopify,12,deny,manual,58.00,,TRUE,TRUE,,,,,,,,,g,,,,
+linen-camp-shirt,,,,,,,,,Sand,,L,,,LW-LCS-SAN-L,450,shopify,12,deny,manual,58.00,,TRUE,TRUE,,,,,,,,,g,,,,
+linen-camp-shirt,,,,,,,,,Sand,,XL,,,LW-LCS-SAN-XL,450,shopify,0,deny,manual,58.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-trim-tee,Tenun Trim Tee,"<p>A clean cotton tee finished with a narrow strip of tenun at the neckline. Small detail, worn every day.</p>",Lokawear,,Tops,new,TRUE,Color,Sand,Size,S,,,LW-TTT-SAN-S,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1666358066384-26972e4c0461?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Tenun Trim Tee, front",FALSE,,"A clean cotton tee finished with a narrow strip of tenun at the neckline. Small detail, worn every day.",,g,active,"Troso, Jepara",Handwoven tenun ikat,"Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+tenun-trim-tee,,,,,,,,,Sand,,M,,,LW-TTT-SAN-M,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1666358059751-3accf39c2d95?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Tenun Trim Tee, detail",,,,,g,,,,
+tenun-trim-tee,,,,,,,,,Sand,,L,,,LW-TTT-SAN-L,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1748141951488-9c9fb9603daf?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Tenun Trim Tee, fabric texture",,,,,g,,,,
+tenun-trim-tee,,,,,,,,,Sand,,XL,,,LW-TTT-SAN-XL,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-trim-tee,,,,,,,,,Peach,,S,,,LW-TTT-PEA-S,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-trim-tee,,,,,,,,,Peach,,M,,,LW-TTT-PEA-M,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-trim-tee,,,,,,,,,Peach,,L,,,LW-TTT-PEA-L,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-trim-tee,,,,,,,,,Peach,,XL,,,LW-TTT-PEA-XL,450,shopify,12,deny,manual,38.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-dip-dye-tee,Indigo Dip-Dye Tee,"<p>Each tee is dipped by hand in an indigo vat, so no two shades are quite the same.</p>",Lokawear,,Tops,,TRUE,Color,Indigo,Size,S,,,LW-IDT-IND-S,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,https://images.unsplash.com/photo-1666358062946-c05cbbcf5686?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Indigo Dip-Dye Tee, front",FALSE,,"Each tee is dipped by hand in an indigo vat, so no two shades are quite the same.",,g,active,Yogyakarta,Natural indigo dye,"Wash separately in cold water for the first few washes.
+Indigo fades with wear; that is the point.
+Dry in the shade. Do not bleach."
+indigo-dip-dye-tee,,,,,,,,,Indigo,,M,,,LW-IDT-IND-M,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,https://images.unsplash.com/photo-1666358063213-9b7785eb71a9?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Indigo Dip-Dye Tee, detail",,,,,g,,,,
+indigo-dip-dye-tee,,,,,,,,,Indigo,,L,,,LW-IDT-IND-L,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,https://images.unsplash.com/photo-1778084356053-40103587d24f?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Indigo Dip-Dye Tee, fabric texture",,,,,g,,,,
+indigo-dip-dye-tee,,,,,,,,,Indigo,,XL,,,LW-IDT-IND-XL,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-dip-dye-tee,,,,,,,,,Navy,,S,,,LW-IDT-NAV-S,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-dip-dye-tee,,,,,,,,,Navy,,M,,,LW-IDT-NAV-M,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-dip-dye-tee,,,,,,,,,Navy,,L,,,LW-IDT-NAV-L,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-dip-dye-tee,,,,,,,,,Navy,,XL,,,LW-IDT-NAV-XL,450,shopify,12,deny,manual,44.00,52.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-knit-polo,Lurik Knit Polo,"<p>A knitted polo with a lurik-inspired stripe across the chest. Half zip, relaxed fit, soft against the skin.</p>",Lokawear,,Tops,handwoven,TRUE,Color,Cream,Size,S,,,LW-LKP-CRE-S,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1711355249709-1733df63e028?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Lurik Knit Polo, front",FALSE,,"A knitted polo with a lurik-inspired stripe across the chest. Half zip, relaxed fit, soft against the skin.",,g,active,"Klaten, Central Java",Hand-loomed lurik (ATBM),"Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+lurik-knit-polo,,,,,,,,,Cream,,M,,,LW-LKP-CRE-M,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1666037747220-d1ada9f62c59?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Lurik Knit Polo, detail",,,,,g,,,,
+lurik-knit-polo,,,,,,,,,Cream,,L,,,LW-LKP-CRE-L,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1757382603782-839864de55d7?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Lurik Knit Polo, fabric texture",,,,,g,,,,
+lurik-knit-polo,,,,,,,,,Cream,,XL,,,LW-LKP-CRE-XL,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-knit-polo,,,,,,,,,Taupe,,S,,,LW-LKP-TAU-S,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-knit-polo,,,,,,,,,Taupe,,M,,,LW-LKP-TAU-M,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-knit-polo,,,,,,,,,Taupe,,L,,,LW-LKP-TAU-L,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-knit-polo,,,,,,,,,Taupe,,XL,,,LW-LKP-TAU-XL,450,shopify,12,deny,manual,54.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-wide-trousers,Indigo Wide Trousers,"<p>High-rise wide trousers with a drawstring waist, dyed in natural indigo. Cool, loose and made to move.</p>",Lokawear,,Bottoms,bestseller,TRUE,Color,Indigo,Size,S,,,LW-IWT-IND-S,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1789110854236-8de32351d62a?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Indigo Wide Trousers, front",FALSE,,"High-rise wide trousers with a drawstring waist, dyed in natural indigo. Cool, loose and made to move.",,g,active,Yogyakarta,Natural indigo dye,"Wash separately in cold water for the first few washes.
+Indigo fades with wear; that is the point.
+Dry in the shade. Do not bleach."
+indigo-wide-trousers,,,,,,,,,Indigo,,M,,,LW-IWT-IND-M,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1789110520755-058df30bf9cb?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Indigo Wide Trousers, detail",,,,,g,,,,
+indigo-wide-trousers,,,,,,,,,Indigo,,L,,,LW-IWT-IND-L,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1761808070411-65ca8cdcdcfb?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Indigo Wide Trousers, fabric texture",,,,,g,,,,
+indigo-wide-trousers,,,,,,,,,Indigo,,XL,,,LW-IWT-IND-XL,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-wide-trousers,,,,,,,,,Charcoal,,S,,,LW-IWT-CHA-S,450,shopify,0,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-wide-trousers,,,,,,,,,Charcoal,,M,,,LW-IWT-CHA-M,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-wide-trousers,,,,,,,,,Charcoal,,L,,,LW-IWT-CHA-L,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+indigo-wide-trousers,,,,,,,,,Charcoal,,XL,,,LW-IWT-CHA-XL,450,shopify,12,deny,manual,72.00,,TRUE,TRUE,,,,,,,,,g,,,,
+sarong-pants,Sarong Pants,"<p>Wrap-front trousers inspired by the sarong, with a batik cap lining at the waistband.</p>",Lokawear,,Bottoms,,TRUE,Color,Sand,Size,S,,,LW-SP-SAN-S,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1711443813147-def27861b9af?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Sarong Pants, front",FALSE,,"Wrap-front trousers inspired by the sarong, with a batik cap lining at the waistband.",,g,active,"Pekalongan, Central Java","Batik cap, copper-stamped","Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+sarong-pants,,,,,,,,,Sand,,M,,,LW-SP-SAN-M,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1721134619759-223b27177bb5?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Sarong Pants, detail",,,,,g,,,,
+sarong-pants,,,,,,,,,Sand,,L,,,LW-SP-SAN-L,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1761516659497-8478e39d2b26?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Sarong Pants, fabric texture",,,,,g,,,,
+sarong-pants,,,,,,,,,Sand,,XL,,,LW-SP-SAN-XL,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,,,,,,,,g,,,,
+sarong-pants,,,,,,,,,Indigo,,S,,,LW-SP-IND-S,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,,,,,,,,g,,,,
+sarong-pants,,,,,,,,,Indigo,,M,,,LW-SP-IND-M,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,,,,,,,,g,,,,
+sarong-pants,,,,,,,,,Indigo,,L,,,LW-SP-IND-L,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,,,,,,,,g,,,,
+sarong-pants,,,,,,,,,Indigo,,XL,,,LW-SP-IND-XL,450,shopify,0,deny,manual,62.00,,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-drawstring-shorts,Lurik Drawstring Shorts,<p>Soft lurik shorts with a drawstring waist and deep side pockets. Weekend uniform.</p>,Lokawear,,Bottoms,new,TRUE,Color,Grey,Size,S,,,LW-LDS-GRE-S,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,https://images.unsplash.com/photo-1789110520388-ebea45c8bbbb?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Lurik Drawstring Shorts, front",FALSE,,Soft lurik shorts with a drawstring waist and deep side pockets. Weekend uniform.,,g,active,"Klaten, Central Java",Hand-loomed lurik (ATBM),"Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+lurik-drawstring-shorts,,,,,,,,,Grey,,M,,,LW-LDS-GRE-M,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,https://images.unsplash.com/photo-1719473442915-016f3ebda79a?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Lurik Drawstring Shorts, detail",,,,,g,,,,
+lurik-drawstring-shorts,,,,,,,,,Grey,,L,,,LW-LDS-GRE-L,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,https://images.unsplash.com/photo-1643209444864-de08a545289a?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Lurik Drawstring Shorts, fabric texture",,,,,g,,,,
+lurik-drawstring-shorts,,,,,,,,,Grey,,XL,,,LW-LDS-GRE-XL,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-drawstring-shorts,,,,,,,,,Black,,S,,,LW-LDS-BLA-S,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-drawstring-shorts,,,,,,,,,Black,,M,,,LW-LDS-BLA-M,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-drawstring-shorts,,,,,,,,,Black,,L,,,LW-LDS-BLA-L,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,,,,,,,,g,,,,
+lurik-drawstring-shorts,,,,,,,,,Black,,XL,,,LW-LDS-BLA-XL,450,shopify,12,deny,manual,52.00,64.00,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-pleated-skirt,Tenun Pleated Skirt,"<p>A knee-length pleated skirt with a woven tenun waistband. Moves well, packs flat.</p>",Lokawear,,Bottoms,handwoven,TRUE,Color,Black,Size,S,,,LW-TPS-BLA-S,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1789110853398-539d78dd63bc?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Tenun Pleated Skirt, front",FALSE,,"A knee-length pleated skirt with a woven tenun waistband. Moves well, packs flat.",,g,active,"Troso, Jepara",Handwoven tenun ikat,"Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+tenun-pleated-skirt,,,,,,,,,Black,,M,,,LW-TPS-BLA-M,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1721134619759-223b27177bb5?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Tenun Pleated Skirt, detail",,,,,g,,,,
+tenun-pleated-skirt,,,,,,,,,Black,,L,,,LW-TPS-BLA-L,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1748141951488-9c9fb9603daf?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Tenun Pleated Skirt, fabric texture",,,,,g,,,,
+tenun-pleated-skirt,,,,,,,,,Black,,XL,,,LW-TPS-BLA-XL,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-pleated-skirt,,,,,,,,,Cream,,S,,,LW-TPS-CRE-S,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-pleated-skirt,,,,,,,,,Cream,,M,,,LW-TPS-CRE-M,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-pleated-skirt,,,,,,,,,Cream,,L,,,LW-TPS-CRE-L,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-pleated-skirt,,,,,,,,,Cream,,XL,,,LW-TPS-CRE-XL,450,shopify,12,deny,manual,78.00,,TRUE,TRUE,,,,,,,,,g,,,,
+tenun-tote-bag,Tenun Tote Bag,<p>A sturdy everyday tote with long handles and an inner pocket. Big enough for a laptop and the market run after.</p>,Lokawear,,Accessories,"handwoven, bestseller",TRUE,Color,Tan,Size,One size,,,LW-TTB-TAN-OS,250,shopify,12,deny,manual,42.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1544816155-12df9643f363?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Tenun Tote Bag, front",FALSE,,A sturdy everyday tote with long handles and an inner pocket. Big enough for a laptop and the market run after.,,g,active,"Troso, Jepara",Handwoven tenun ikat,"Spot clean with a damp cloth.
+Air dry away from direct sun.
+Store stuffed to keep its shape."
+tenun-tote-bag,,,,,,,,,Natural,,One size,,,LW-TTB-NAT-OS,250,shopify,12,deny,manual,42.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1535981444082-2a5dc0548ef3?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Tenun Tote Bag, detail",,,,,g,,,,
+tenun-tote-bag,,,,,,,,,,,,,,,,,,,,,,,,,https://images.unsplash.com/photo-1776219189008-b80cc6081517?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Tenun Tote Bag, fabric texture",,,,,,,,,
+batik-scarf,Batik Scarf,"<p>A light cotton scarf in stamped batik cap. Wear it at the neck, in the hair, or tied to a bag.</p>",Lokawear,,Accessories,,TRUE,Color,Indigo,Size,One size,,,LW-BS-IND-OS,250,shopify,12,deny,manual,28.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1518912217224-3b1ae276c89e?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Batik Scarf, front",FALSE,,"A light cotton scarf in stamped batik cap. Wear it at the neck, in the hair, or tied to a bag.",,g,active,"Pekalongan, Central Java","Batik cap, copper-stamped","Cold hand wash or gentle cycle, inside out.
+Dry in the shade; the colour softens slowly over time.
+Warm iron on the reverse."
+batik-scarf,,,,,,,,,Sogan Brown,,One size,,,LW-BS-SOG-OS,250,shopify,12,deny,manual,28.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1761516659766-c092d4b1209d?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Batik Scarf, detail",,,,,g,,,,
+batik-scarf,,,,,,,,,,,,,,,,,,,,,,,,,https://images.unsplash.com/photo-1786462806180-1e10fc0876ed?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,3,"Batik Scarf, fabric texture",,,,,,,,,
+everyday-sling-pouch,Everyday Sling Pouch,"<p>A small sling pouch for phone, cards and keys, with an adjustable strap and woven lining.</p>",Lokawear,,Accessories,new,TRUE,Color,Sand,Size,One size,,,LW-ESP-SAN-OS,250,shopify,12,deny,manual,34.00,,TRUE,TRUE,,https://images.unsplash.com/photo-1786872814428-1f0d8d685217?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,1,"Everyday Sling Pouch, front",FALSE,,"A small sling pouch for phone, cards and keys, with an adjustable strap and woven lining.",,g,active,"Bandung, West Java","Washed linen, hand-finished","Spot clean with a damp cloth.
+Air dry away from direct sun.
+Store stuffed to keep its shape."
+everyday-sling-pouch,,,,,,,,,,,,,,,,,,,,,,,,,https://images.unsplash.com/photo-1643209444864-de08a545289a?w=1600&h=2000&fit=crop&crop=entropy&fm=jpg&q=80,2,"Everyday Sling Pouch, detail",,,,,,,,,
