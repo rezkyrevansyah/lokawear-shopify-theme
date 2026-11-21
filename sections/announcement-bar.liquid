@@ -1,0 +1,151 @@
+{%- liquid
+  assign count = section.blocks.size
+-%}
+
+{%- if count > 0 -%}
+  <announcement-bar
+    id="Announcement-{{ section.id }}"
+    class="announcement full-width"
+    data-interval="{{ section.settings.interval | times: 1000 }}"
+    data-section-id="{{ section.id }}"
+    {% if section.settings.dismissible %}hidden{% endif %}
+  >
+    <div class="announcement__inner">
+      <div class="announcement__track">
+        {%- for block in section.blocks -%}
+          <p
+            class="announcement__item label"
+            {% unless forloop.first %}hidden{% endunless %}
+            {{ block.shopify_attributes }}
+          >
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+            {%- else -%}
+              {{ block.settings.text }}
+            {%- endif -%}
+          </p>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.dismissible -%}
+        <button type="button" class="announcement__close" data-dismiss aria-label="{{ 'accessibility.close' | t }}">
+          {% render 'icon', name: 'close' %}
+        </button>
+      {%- endif -%}
+    </div>
+  </announcement-bar>
+
+  {%- if section.settings.dismissible or count > 1 -%}
+    <script src="{{ 'announcement-bar.js' | asset_url }}" defer></script>
+  {%- endif -%}
+
+  {%- if section.settings.dismissible -%}
+    {% comment %} Reveal before paint unless dismissed this session, to avoid layout shift. {% endcomment %}
+    <script>
+      (() => {
+        let dismissed = false;
+        try { dismissed = sessionStorage.getItem('announcement-dismissed-{{ section.id }}') === '1'; } catch (e) {}
+        if (!dismissed) document.getElementById('Announcement-{{ section.id }}').removeAttribute('hidden');
+      })();
+    </script>
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .announcement {
+    background: var(--color-primary);
+    color: var(--color-bg);
+  }
+  .announcement__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding-inline: 2.75rem;
+    text-align: center;
+  }
+  .announcement__item {
+    margin: 0;
+    animation: announcement-in 400ms ease;
+  }
+  .announcement__item a {
+    text-decoration: none;
+  }
+  .announcement__item a:hover {
+    color: inherit;
+    text-decoration: underline;
+  }
+  .announcement__close {
+    position: absolute;
+    right: 0.5rem;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .announcement__close .icon {
+    width: 1rem;
+  }
+  @keyframes announcement-in {
+    from { opacity: 0; transform: translateY(4px); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.announcement_bar.name",
+  "class": "section-announcement",
+  "settings": [
+    {
+      "type": "range",
+      "id": "interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.announcement_bar.interval",
+      "default": 5
+    },
+    {
+      "type": "checkbox",
+      "id": "dismissible",
+      "label": "t:sections.announcement_bar.dismissible",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement_bar.block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:labels.text",
+          "default": "Free shipping on orders over Rp500.000"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:labels.link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "t:sections.announcement_bar.name",
+      "blocks": [
+        { "type": "announcement" }
+      ]
+    }
+  ]
+}
+{% endschema %}

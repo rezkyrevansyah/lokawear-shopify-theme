@@ -1,6 +1,7 @@
 {
   "accessibility": {
-    "skip_to_content": "Skip to content"
+    "skip_to_content": "Skip to content",
+    "close": "Close"
   },
   "404": {
     "title": "404",
@@ -20,7 +21,23 @@
     "checkout": "Checkout",
     "title": "Cart",
     "update": "Update",
-    "remove": "Remove"
+    "remove": "Remove",
+    "drawer_title": {
+      "one": "Your bag (1)",
+      "other": "Your bag ({{ count }})"
+    },
+    "free_shipping_remaining_html": "You are <strong>{{ amount }}</strong> away from free shipping",
+    "free_shipping_unlocked": "You have unlocked free shipping.",
+    "free_shipping_progress": "Progress to free shipping",
+    "empty": "Your bag is empty.",
+    "continue_shopping": "Continue shopping",
+    "decrease": "Decrease quantity of {{ title }}",
+    "increase": "Increase quantity of {{ title }}",
+    "quantity_for": "Quantity of {{ title }}",
+    "add_note": "Add an order note",
+    "note": "Order note",
+    "subtotal": "Subtotal",
+    "taxes_and_shipping": "Taxes and shipping calculated at checkout."
   },
   "customers": {
     "login": {
@@ -51,5 +68,23 @@
     "submit": "Search",
     "no_results_html": "No results found for {{ terms }}",
     "results_for_html": "{{ count }} results found for {{ terms }}"
+  },
+  "header": {
+    "open_menu": "Open menu",
+    "menu": "Menu",
+    "main_navigation": "Main",
+    "search": "Search",
+    "account": "Account",
+    "cart": "Bag",
+    "view_all": "View all {{ title }}"
+  },
+  "newsletter": {
+    "email": "Email address",
+    "subscribe": "Subscribe",
+    "success": "Thank you. You are on the list."
+  },
+  "footer": {
+    "country": "Country / currency",
+    "update": "Update"
   }
 }

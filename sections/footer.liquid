@@ -1,56 +1,262 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
+{%- liquid
+  assign socials = 'instagram,tiktok,facebook,pinterest' | split: ','
+-%}
 
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
+<footer class="footer full-width">
+  <div class="lurik" aria-hidden="true"></div>
 
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
-    {% endif %}
+  <div class="footer__inner">
+    <div class="footer__blocks">
+      {%- for block in section.blocks -%}
+        <div class="footer__block footer__block--{{ block.type }}" {{ block.shopify_attributes }}>
+          {%- if block.settings.heading != blank -%}
+            <h2 class="label footer__heading">{{ block.settings.heading }}</h2>
+          {%- endif -%}
+
+          {%- case block.type -%}
+            {%- when 'brand' -%}
+              <p class="footer__wordmark">{{ block.settings.wordmark | default: shop.name }}</p>
+              <div class="footer__text text-muted">{{ block.settings.text }}</div>
+            {%- when 'menu' -%}
+              <ul class="footer__links" role="list">
+                {%- for link in block.settings.menu.links -%}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- endfor -%}
+              </ul>
+            {%- when 'newsletter' -%}
+              {%- if block.settings.text != blank -%}
+                <p class="footer__text text-muted">{{ block.settings.text }}</p>
+              {%- endif -%}
+              {% render 'newsletter-form', id: 'NewsletterFooter' %}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="footer__bottom">
+      <ul class="footer__socials" role="list">
+        {%- for social in socials -%}
+          {%- assign key = 'social_' | append: social -%}
+          {%- if settings[key] != blank -%}
+            <li>
+              <a href="{{ settings[key] }}" class="icon-button" target="_blank" rel="noopener">
+                {% render 'icon', name: social %}
+                <span class="visually-hidden">{{ social | capitalize }}</span>
+              </a>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+
+      {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+        {%- form 'localization', class: 'footer__localization' -%}
+          <label for="FooterCountry" class="visually-hidden">{{ 'footer.country' | t }}</label>
+          <select id="FooterCountry" name="country_code" class="input" onchange="this.form.submit()">
+            {%- for country in localization.available_countries -%}
+              <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
+                {{ country.name }} ({{ country.currency.iso_code }} {{ country.currency.symbol }})
+              </option>
+            {%- endfor -%}
+          </select>
+          <noscript><button type="submit" class="button button--secondary">{{ 'footer.update' | t }}</button></noscript>
+        {%- endform -%}
+      {%- endif -%}
+
+      {%- if section.settings.show_payment_icons -%}
+        <ul class="footer__payment" role="list">
+          {%- for type in shop.enabled_payment_types -%}
+            <li>{{ type | payment_type_svg_tag }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    <div class="footer__legal text-muted">
+      <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+      {%- if section.settings.disclaimer != blank -%}
+        <p>{{ section.settings.disclaimer }}</p>
+      {%- endif -%}
+    </div>
   </div>
 </footer>
 
 {% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
+  .footer {
+    margin-top: clamp(4rem, 10vw, 8rem);
+    background: var(--color-surface);
   }
-  footer a {
+  .footer__inner {
+    width: var(--content-width);
+    margin-inline: auto;
+    padding-block: 4rem 2rem;
+  }
+  .footer__blocks {
+    display: grid;
+    gap: 2.5rem;
+  }
+  .footer__heading {
+    margin-bottom: 1rem;
+  }
+  .footer__wordmark {
+    margin-bottom: 0.75rem;
+    font-family: var(--font-heading--family);
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .footer__text {
+    max-width: 36ch;
+    margin-bottom: 1rem;
+  }
+  .footer__links {
+    display: grid;
+    gap: 0.625rem;
+    padding: 0;
+    list-style: none;
+  }
+  .footer__links a {
     text-decoration: none;
-    color: var(--color-text);
   }
-  footer .footer__links,
-  footer .footer__payment {
+  .footer__bottom {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .footer__socials,
+  .footer__payment {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+  .footer__socials {
+    margin-left: -0.75rem;
+  }
+  .footer__payment svg {
+    width: 2.375rem;
+    height: auto;
+  }
+  .footer__localization .input {
+    min-height: 2.5rem;
+    padding-block: 0.25rem;
+    font-size: 0.875rem;
+  }
+  .footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.8125rem;
+  }
+
+  @media (min-width: 750px) {
+    .footer__blocks {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 990px) {
+    .footer__blocks {
+      display: flex;
+      gap: 3rem;
+    }
+    .footer__block {
+      flex: 1;
+    }
+    .footer__block--brand,
+    .footer__block--newsletter {
+      flex: 1.75;
+    }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.footer",
+  "class": "section-footer",
   "settings": [
     {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
+      "type": "checkbox",
+      "id": "show_country_selector",
+      "label": "t:sections.footer.show_country_selector",
+      "info": "t:sections.footer.show_country_selector_info",
+      "default": true
     },
     {
       "type": "checkbox",
       "id": "show_payment_icons",
       "label": "t:labels.show_payment_icons",
       "default": true
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "t:sections.footer.disclaimer",
+      "default": "Demo store for portfolio purposes. No real orders."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand",
+      "name": "t:sections.footer.brand",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "wordmark",
+          "label": "t:sections.header.wordmark",
+          "default": "Lokawear"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:labels.text",
+          "default": "<p>Everyday clothing in tenun, lurik and batik cap, cut for modern life. Rooted in craft. Cut for today.</p>"
+        }
+      ]
+    },
+    {
+      "type": "menu",
+      "name": "t:labels.menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:labels.heading",
+          "default": "Shop"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "t:labels.menu",
+          "default": "footer"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "t:sections.footer.newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:labels.heading",
+          "default": "Letters from the loom"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:labels.text",
+          "default": "New drops, maker stories and care notes. Once a month, never more."
+        }
+      ]
     }
   ]
 }

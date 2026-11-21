@@ -31,7 +31,9 @@
     "sidebar": "Sidebar",
     "text": "Text",
     "theme": "Theme",
-    "typography": "Typography"
+    "typography": "Typography",
+    "social_media": "Social media",
+    "favicon": "Favicon"
   },
   "labels": {
     "alignment": "Alignment",
@@ -56,7 +58,10 @@
     "color_muted": "Muted text",
     "color_primary": "Primary (buttons, links)",
     "color_accent": "Accent (sale badge, hover)",
-    "color_line": "Lines and borders"
+    "color_line": "Lines and borders",
+    "link": "Link",
+    "image": "Image",
+    "heading": "Heading"
   },
   "options": {
     "alignment": {
@@ -83,6 +88,37 @@
     }
   },
   "info": {
-    "color_contrast": "Keep text colors at a 4.5:1 contrast ratio or higher against the background and surface colors (WCAG AA)."
+    "color_contrast": "Keep text colors at a 4.5:1 contrast ratio or higher against the background and surface colors (WCAG AA).",
+    "favicon": "Shown at 32 × 32px. Leave empty to use the Lokawear mark."
+  },
+  "sections": {
+    "announcement_bar": {
+      "name": "Announcement bar",
+      "block": "Announcement",
+      "interval": "Rotate every",
+      "dismissible": "Let visitors close the bar"
+    },
+    "header": {
+      "logo": "Logo image",
+      "logo_width": "Logo width",
+      "wordmark": "Text logo",
+      "wordmark_info": "Shown when no logo image is set.",
+      "sticky": "Sticky header",
+      "mega_promo": "Mega menu image",
+      "mega_promo_parent": "Menu item",
+      "mega_promo_parent_info": "Title of the top-level menu item this image appears under, for example Shop."
+    },
+    "cart_drawer": {
+      "name": "Cart drawer",
+      "free_shipping_threshold": "Free shipping threshold",
+      "free_shipping_threshold_info": "In your store currency, without decimals. Set 0 to hide the progress bar."
+    },
+    "footer": {
+      "brand": "Brand",
+      "newsletter": "Newsletter",
+      "disclaimer": "Disclaimer",
+      "show_country_selector": "Show country / currency selector",
+      "show_country_selector_info": "Appears when more than one market is active."
+    }
   }
 }

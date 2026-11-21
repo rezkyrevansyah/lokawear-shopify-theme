@@ -1,0 +1,314 @@
+{%- comment -%}
+  Rendered once from layout/theme.liquid. cart-drawer.js re-renders [data-cart-contents]
+  through the Section Rendering API after every cart change.
+{%- endcomment -%}
+
+{%- liquid
+  assign threshold = section.settings.free_shipping_threshold | times: 100
+  assign remaining = threshold | minus: cart.total_price
+  assign remaining_money = remaining | money
+  if threshold > 0
+    assign progress = cart.total_price | times: 100 | divided_by: threshold
+    if progress > 100
+      assign progress = 100
+    endif
+  endif
+-%}
+
+<cart-drawer>
+  <dialog id="CartDrawer" class="drawer drawer--right cart-drawer" scroll-lock aria-labelledby="CartDrawer-title">
+    <div class="drawer__inner" data-cart-contents>
+      <div class="drawer__header">
+        <h2 id="CartDrawer-title" class="label">
+          {{ 'cart.drawer_title' | t: count: cart.item_count }}
+        </h2>
+        <button type="button" class="icon-button" data-dialog-close aria-label="{{ 'accessibility.close' | t }}">
+          {% render 'icon', name: 'close' %}
+        </button>
+      </div>
+
+      {%- if threshold > 0 and cart.item_count > 0 -%}
+        <div class="cart-drawer__shipping">
+          <p>
+            {%- if remaining > 0 -%}
+              {{ 'cart.free_shipping_remaining_html' | t: amount: remaining_money }}
+            {%- else -%}
+              {{ 'cart.free_shipping_unlocked' | t }}
+            {%- endif -%}
+          </p>
+          <div
+            class="cart-drawer__progress"
+            role="progressbar"
+            aria-label="{{ 'cart.free_shipping_progress' | t }}"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="{{ progress }}"
+          >
+            <span style="width: {{ progress }}%"></span>
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="drawer__body">
+        <p class="cart-drawer__error" role="alert" data-cart-error></p>
+
+        {%- if cart.item_count == 0 -%}
+          <div class="cart-drawer__empty">
+            <p class="h3">{{ 'cart.empty' | t }}</p>
+            <a href="{{ routes.all_products_collection_url }}" class="button">{{ 'cart.continue_shopping' | t }}</a>
+          </div>
+        {%- else -%}
+          <ul class="cart-items" role="list">
+            {%- for item in cart.items -%}
+              <li class="cart-item">
+                <a href="{{ item.url }}" class="cart-item__media" tabindex="-1" aria-hidden="true">
+                  {%- if item.image -%}
+                    {{
+                      item.image
+                      | image_url: width: 192
+                      | image_tag: loading: 'lazy', widths: '96, 192', sizes: '96px', alt: item.image.alt
+                    }}
+                  {%- endif -%}
+                </a>
+
+                <div class="cart-item__details">
+                  <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title }}</a>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <p class="cart-item__variant text-muted">{{ item.variant.title }}</p>
+                  {%- endunless -%}
+                  <p class="cart-item__price">
+                    {%- if item.original_line_price > item.final_line_price -%}
+                      <s class="text-muted">{{ item.original_line_price | money }}</s>
+                    {%- endif -%}
+                    {{ item.final_line_price | money }}
+                  </p>
+
+                  <div class="cart-item__actions">
+                    <div class="qty">
+                      <button
+                        type="button"
+                        id="CartDrawer-minus-{{ item.key }}"
+                        class="qty__button"
+                        data-line="{{ forloop.index }}"
+                        data-quantity="{{ item.quantity | minus: 1 }}"
+                        aria-label="{{ 'cart.decrease' | t: title: item.product.title }}"
+                      >
+                        &minus;
+                      </button>
+                      <input
+                        type="number"
+                        id="CartDrawer-qty-{{ item.key }}"
+                        class="qty__input"
+                        value="{{ item.quantity }}"
+                        min="0"
+                        inputmode="numeric"
+                        data-line="{{ forloop.index }}"
+                        aria-label="{{ 'cart.quantity_for' | t: title: item.product.title }}"
+                      >
+                      <button
+                        type="button"
+                        id="CartDrawer-plus-{{ item.key }}"
+                        class="qty__button"
+                        data-line="{{ forloop.index }}"
+                        data-quantity="{{ item.quantity | plus: 1 }}"
+                        aria-label="{{ 'cart.increase' | t: title: item.product.title }}"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <button
+                      type="button"
+                      class="cart-item__remove"
+                      data-line="{{ forloop.index }}"
+                      data-quantity="0"
+                    >
+                      {{ 'cart.remove' | t }}
+                    </button>
+                  </div>
+                </div>
+              </li>
+            {%- endfor -%}
+          </ul>
+
+          <details class="cart-drawer__note">
+            <summary>{{ 'cart.add_note' | t }}</summary>
+            <label for="CartDrawer-note" class="visually-hidden">{{ 'cart.note' | t }}</label>
+            <textarea id="CartDrawer-note" class="input" rows="3" data-cart-note>{{ cart.note }}</textarea>
+          </details>
+        {%- endif -%}
+      </div>
+
+      {%- if cart.item_count > 0 -%}
+        <form action="{{ routes.cart_url }}" method="post" class="cart-drawer__footer">
+          <p class="cart-drawer__subtotal">
+            <span class="label">{{ 'cart.subtotal' | t }}</span>
+            <span>{{ cart.total_price | money_with_currency }}</span>
+          </p>
+          <p class="text-muted cart-drawer__taxes">{{ 'cart.taxes_and_shipping' | t }}</p>
+          <button type="submit" name="checkout" class="button cart-drawer__checkout">
+            {{ 'cart.checkout' | t }}
+          </button>
+        </form>
+      {%- endif -%}
+    </div>
+  </dialog>
+</cart-drawer>
+
+<script src="{{ 'cart-drawer.js' | asset_url }}" defer></script>
+
+{% stylesheet %}
+  .cart-drawer {
+    width: min(28rem, 100vw);
+  }
+  .cart-drawer [aria-busy='true'] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  .cart-drawer__shipping {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: var(--color-surface);
+    font-size: 0.875rem;
+  }
+  .cart-drawer__progress {
+    height: 3px;
+    background: var(--color-line);
+  }
+  .cart-drawer__progress span {
+    display: block;
+    height: 100%;
+    background: var(--color-primary);
+    transition: width 300ms ease;
+  }
+  .cart-drawer__error:empty {
+    display: none;
+  }
+  .cart-drawer__error {
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-size: 0.875rem;
+  }
+  .cart-drawer__empty {
+    display: grid;
+    justify-items: start;
+    gap: 1.5rem;
+    padding-top: 2rem;
+  }
+  .cart-items {
+    padding: 0;
+    list-style: none;
+  }
+  .cart-item {
+    display: grid;
+    grid-template-columns: 6rem 1fr;
+    gap: 1rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .cart-item__media {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+  .cart-item__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cart-item__details {
+    display: grid;
+    align-content: start;
+    gap: 0.25rem;
+    font-size: 0.9375rem;
+  }
+  .cart-item__title {
+    font-family: var(--font-heading--family);
+    font-size: 1.125rem;
+    text-decoration: none;
+  }
+  .cart-item__variant {
+    font-size: 0.875rem;
+  }
+  .cart-item__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+  }
+  .qty {
+    display: inline-flex;
+    border: 1px solid var(--color-line);
+  }
+  .qty__button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0;
+    background: none;
+    color: inherit;
+    font-size: 1.125rem;
+    cursor: pointer;
+  }
+  .qty__input {
+    width: 2.5rem;
+    border: 0;
+    background: none;
+    color: inherit;
+    text-align: center;
+    -moz-appearance: textfield;
+  }
+  .qty__input::-webkit-inner-spin-button,
+  .qty__input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+  .cart-item__remove {
+    padding: 0.5rem 0;
+    border: 0;
+    background: none;
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .cart-drawer__note {
+    margin-top: 1.5rem;
+  }
+  .cart-drawer__note summary {
+    margin-bottom: 0.75rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+  }
+  .cart-drawer__footer {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .cart-drawer__subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.125rem;
+  }
+  .cart-drawer__taxes {
+    font-size: 0.8125rem;
+  }
+  .cart-drawer__checkout {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.cart_drawer.name",
+  "settings": [
+    {
+      "type": "number",
+      "id": "free_shipping_threshold",
+      "label": "t:sections.cart_drawer.free_shipping_threshold",
+      "info": "t:sections.cart_drawer.free_shipping_threshold_info",
+      "default": 500000
+    }
+  ]
+}
+{% endschema %}

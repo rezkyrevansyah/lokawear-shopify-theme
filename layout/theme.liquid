@@ -4,6 +4,12 @@
     {% # Preload the body font so text renders without a swap flash %}
     {{ settings.type_body_font | font_url | preload_tag: as: 'font', type: 'font/woff2', crossorigin: true }}
 
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">
+    {%- else -%}
+      <link rel="icon" type="image/svg+xml" href="{{ 'favicon.svg' | asset_url }}">
+    {%- endif -%}
+
     {% # Inlined CSS Variables %}
     {% render 'css-variables' %}
 
@@ -12,6 +18,8 @@
 
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
   </head>
@@ -26,5 +34,7 @@
     </main>
 
     {% sections 'footer-group' %}
+
+    {% section 'cart-drawer' %}
   </body>
 </html>

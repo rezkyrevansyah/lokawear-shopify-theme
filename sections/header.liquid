@@ -1,65 +1,480 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+{%- liquid
+  assign menu = section.settings.menu
+-%}
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
+{%- if section.settings.sticky -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+  </style>
+{%- endif -%}
 
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
+<header class="header full-width">
+  <div class="header__inner">
+    <button
+      type="button"
+      class="icon-button header__menu-toggle"
+      data-dialog-open="MenuDrawer"
+      aria-label="{{ 'header.open_menu' | t }}"
+      aria-haspopup="dialog"
+    >
+      {% render 'icon', name: 'menu' %}
+    </button>
 
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
-      {{ 'icon-cart.svg' | inline_asset_content }}
+    <a href="{{ routes.root_url }}" class="header__logo">
+      {%- if section.settings.logo != blank -%}
+        {%- assign logo_width_2x = section.settings.logo_width | times: 2 -%}
+        {{
+          section.settings.logo
+          | image_url: width: logo_width_2x
+          | image_tag:
+            width: section.settings.logo_width,
+            alt: shop.name,
+            loading: 'eager',
+            fetchpriority: 'high'
+        }}
+      {%- else -%}
+        <span class="header__wordmark">{{ section.settings.wordmark | default: shop.name }}</span>
+      {%- endif -%}
     </a>
+
+    <nav class="header__nav" aria-label="{{ 'header.main_navigation' | t }}">
+      <ul class="nav" role="list">
+        {%- for link in menu.links -%}
+          {%- assign has_children = false -%}
+          {%- if link.links.size > 0 -%}
+            {%- assign has_children = true -%}
+          {%- endif -%}
+          <li class="nav__item{% if has_children %} nav__item--mega{% endif %}">
+            <a
+              href="{{ link.url }}"
+              class="nav__link label"
+              {% if link.current or link.child_active %}aria-current="page"{% endif %}
+            >
+              {{- link.title -}}
+              {%- if has_children %}{% render 'icon', name: 'chevron', class: 'nav__chevron' %}{% endif -%}
+            </a>
+
+            {%- if has_children -%}
+              <div class="mega">
+                <div class="mega__inner">
+                  <ul class="mega__columns" role="list">
+                    {%- for child in link.links -%}
+                      <li>
+                        <a href="{{ child.url }}" class="mega__heading">{{ child.title }}</a>
+                        {%- if child.links.size > 0 -%}
+                          <ul class="mega__links" role="list">
+                            {%- for grandchild in child.links -%}
+                              <li><a href="{{ grandchild.url }}">{{ grandchild.title }}</a></li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- endif -%}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+
+                  {%- assign parent_handle = link.title | handleize -%}
+                  <div class="mega__promos">
+                    {%- for block in section.blocks -%}
+                      {%- assign block_parent = block.settings.parent | handleize -%}
+                      {%- if block_parent == parent_handle -%}
+                        <a href="{{ block.settings.link | default: link.url }}" class="mega__promo" {{ block.shopify_attributes }}>
+                          <div class="mega__promo-media">
+                            {%- if block.settings.image != blank -%}
+                              {{
+                                block.settings.image
+                                | image_url: width: 640
+                                | image_tag:
+                                  loading: 'lazy',
+                                  sizes: '(min-width: 990px) 280px, 1px',
+                                  widths: '320, 480, 640'
+                              }}
+                            {%- else -%}
+                              {{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}
+                            {%- endif -%}
+                          </div>
+                          <span class="label">{{ block.settings.heading }}</span>
+                        </a>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__icons">
+      <a href="{{ routes.search_url }}" class="icon-button" aria-label="{{ 'header.search' | t }}">
+        {% render 'icon', name: 'search' %}
+      </a>
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="icon-button header__icon--account" aria-label="{{ 'header.account' | t }}">
+          {% render 'icon', name: 'account' %}
+        </a>
+      {%- endif -%}
+
+      <a
+        href="{{ routes.cart_url }}"
+        class="icon-button header__cart"
+        data-dialog-open="CartDrawer"
+        aria-label="{{ 'header.cart' | t }}"
+        aria-haspopup="dialog"
+      >
+        {% render 'icon', name: 'cart' %}
+        <span class="cart-count" data-cart-count {% if cart.item_count == 0 %}hidden{% endif %}>
+          {{- cart.item_count -}}
+        </span>
+      </a>
+    </div>
   </div>
 </header>
 
+<dialog id="MenuDrawer" class="drawer drawer--left" scroll-lock aria-label="{{ 'header.menu' | t }}">
+  <div class="drawer__inner">
+    <div class="drawer__header">
+      <span class="label">{{ 'header.menu' | t }}</span>
+      <button type="button" class="icon-button" data-dialog-close aria-label="{{ 'accessibility.close' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+
+    <nav class="drawer__body" aria-label="{{ 'header.main_navigation' | t }}">
+      <ul class="mobile-nav" role="list">
+        {%- for link in menu.links -%}
+          <li>
+            {%- if link.links.size > 0 -%}
+              <details>
+                <summary class="mobile-nav__link">
+                  {{ link.title }}
+                  {% render 'icon', name: 'chevron' %}
+                </summary>
+                <ul class="mobile-nav__sub" role="list">
+                  <li><a href="{{ link.url }}">{{ 'header.view_all' | t: title: link.title }}</a></li>
+                  {%- for child in link.links -%}
+                    <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                  {%- endfor -%}
+                </ul>
+              </details>
+            {%- else -%}
+              <a href="{{ link.url }}" class="mobile-nav__link">{{ link.title }}</a>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if shop.customer_accounts_enabled -%}
+        <a href="{{ routes.account_url }}" class="mobile-nav__account">
+          {% render 'icon', name: 'account' %}
+          {{ 'header.account' | t }}
+        </a>
+      {%- endif -%}
+    </nav>
+  </div>
+</dialog>
+
 {% stylesheet %}
-  header {
-    height: 5rem;
+  .header {
+    position: relative;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    width: var(--content-width);
+    min-height: 4.5rem;
+    margin-inline: auto;
+  }
+  .header__logo {
+    justify-self: center;
+    text-decoration: none;
+  }
+  .header__logo:hover {
+    color: inherit;
+  }
+  .header__wordmark {
+    font-family: var(--font-heading--family);
+    font-size: 1.75rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .header__nav {
+    display: none;
+  }
+  .header__icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+  }
+  .header__icon--account {
+    display: none;
+  }
+  .cart-count {
+    position: absolute;
+    top: 0.35rem;
+    right: 0.2rem;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    padding-inline: 0.25rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.6875rem;
+    font-weight: var(--font-body--weight-bold);
+    line-height: 1.1rem;
+    text-align: center;
+  }
+
+  @media (min-width: 990px) {
+    .header__inner {
+      grid-template-columns: auto 1fr auto;
+      gap: 2.5rem;
+    }
+    .header__menu-toggle {
+      display: none;
+    }
+    .header__logo {
+      justify-self: start;
+    }
+    .header__nav {
+      display: block;
+    }
+    .header__icon--account {
+      display: grid;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 0;
+      list-style: none;
+    }
+    .nav__link {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      min-height: 4.5rem;
+      text-decoration: none;
+    }
+    .nav__link[aria-current] {
+      text-decoration: underline;
+      text-underline-offset: 0.5em;
+    }
+    .nav__chevron {
+      width: 0.875rem;
+      transition: transform 200ms ease;
+    }
+    .mega {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      border-block: 1px solid var(--color-line);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: opacity 200ms ease, transform 200ms ease, visibility 0s linear 200ms;
+    }
+    .nav__item--mega:hover .mega,
+    .nav__item--mega:focus-within .mega {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      transition-delay: 0s;
+    }
+    .nav__item--mega:hover .nav__chevron,
+    .nav__item--mega:focus-within .nav__chevron {
+      transform: rotate(180deg);
+    }
+    .mega__inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      width: var(--content-width);
+      margin-inline: auto;
+      padding-block: 2.5rem 3rem;
+    }
+    .mega__columns {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+      align-content: start;
+      gap: 1.5rem 2rem;
+      padding: 0;
+      list-style: none;
+    }
+    .mega__heading {
+      font-family: var(--font-heading--family);
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+    .mega__links {
+      display: grid;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      padding: 0;
+      list-style: none;
+      color: var(--color-muted);
+    }
+    .mega__links a {
+      text-decoration: none;
+    }
+    .mega__promos {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .mega__promo {
+      display: grid;
+      gap: 0.75rem;
+      width: 17.5rem;
+      text-decoration: none;
+    }
+    .mega__promo-media {
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: var(--color-surface);
+      border-radius: var(--radius);
+    }
+    .mega__promo-media img,
+    .mega__promo-media svg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 600ms ease;
+    }
+    .mega__promo:hover img {
+      transform: scale(1.04);
+    }
+  }
+
+  .mobile-nav {
+    padding: 0;
+    list-style: none;
+  }
+  .mobile-nav > li {
+    border-bottom: 1px solid var(--color-line);
+  }
+  .mobile-nav__link {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  header a {
-    position: relative;
+    padding-block: 1rem;
+    font-family: var(--font-heading--family);
+    font-size: 1.5rem;
     text-decoration: none;
-    color: var(--color-text);
+    list-style: none;
+    cursor: pointer;
   }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
+  .mobile-nav__link::-webkit-details-marker {
+    display: none;
   }
-  header svg {
-    width: 2rem;
+  .mobile-nav__link .icon {
+    width: 1.25rem;
+    transition: transform 200ms ease;
   }
-  header .header__menu,
-  header .header__icons {
+  details[open] > .mobile-nav__link .icon {
+    transform: rotate(180deg);
+  }
+  .mobile-nav__sub {
+    display: grid;
+    gap: 0.75rem;
+    padding: 0 0 1.25rem;
+    list-style: none;
+    color: var(--color-muted);
+  }
+  .mobile-nav__sub a {
+    text-decoration: none;
+  }
+  .mobile-nav__account {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    text-decoration: none;
+  }
+  .mobile-nav__account .icon {
+    width: 1.25rem;
   }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.header",
+  "class": "section-header",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "t:sections.header.logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 60,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.header.logo_width",
+      "default": 120
+    },
+    {
+      "type": "text",
+      "id": "wordmark",
+      "label": "t:sections.header.wordmark",
+      "info": "t:sections.header.wordmark_info",
+      "default": "Lokawear"
+    },
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:labels.menu"
+      "label": "t:labels.menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "t:sections.header.sticky",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_promo",
+      "name": "t:sections.header.mega_promo",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "parent",
+          "label": "t:sections.header.mega_promo_parent",
+          "info": "t:sections.header.mega_promo_parent_info"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:labels.image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:labels.heading",
+          "default": "New arrivals"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:labels.link"
+        }
+      ]
     }
   ]
 }
