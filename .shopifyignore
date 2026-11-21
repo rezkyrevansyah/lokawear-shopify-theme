@@ -13,5 +13,5 @@
 #   /(templates|sections)/.*\.json/
 
 # Non-theme folders
-docs/
-tests/
+docs/*
+tests/*

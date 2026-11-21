@@ -39,7 +39,6 @@
     "foreground": "Foreground",
     "grid_gap": "Grid spacing",
     "grid_item_width": "Grid item width",
-    "input_corner_radius": "Input corner radius",
     "layout_direction": "Layout direction",
     "menu": "Menu",
     "padding": "Padding",
@@ -47,7 +46,17 @@
     "page_width": "Page width",
     "show_payment_icons": "Show payment icons",
     "text_style": "Text style",
-    "text": "Text"
+    "text": "Text",
+    "heading_font": "Heading font",
+    "body_font": "Body font",
+    "corner_radius": "Corner radius",
+    "color_bg": "Background",
+    "color_surface": "Surface (cards, alternating sections)",
+    "color_text": "Text",
+    "color_muted": "Muted text",
+    "color_primary": "Primary (buttons, links)",
+    "color_accent": "Accent (sale badge, hover)",
+    "color_line": "Lines and borders"
   },
   "options": {
     "alignment": {
@@ -71,6 +80,9 @@
       "title": "Title",
       "subtitle": "Subtitle",
       "normal": "Normal text"
-    },
+    }
+  },
+  "info": {
+    "color_contrast": "Keep text colors at a 4.5:1 contrast ratio or higher against the background and surface colors (WCAG AA)."
   }
 }
