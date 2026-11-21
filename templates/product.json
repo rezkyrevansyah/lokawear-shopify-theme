@@ -1,20 +1,30 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
       "type": "product",
+      "blocks": {
+        "title": { "type": "title" },
+        "price": { "type": "price" },
+        "variant_picker": { "type": "variant_picker" },
+        "buy_buttons": { "type": "buy_buttons", "settings": { "show_dynamic_checkout": true } },
+        "description": { "type": "description" },
+        "fabric_story": { "type": "fabric_story", "settings": { "heading": "The cloth" } },
+        "care": { "type": "care", "settings": { "heading": "Care" } },
+        "shipping": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Shipping & returns",
+            "content": "<p>Free shipping on orders over $75. Free returns within 30 days, unworn and with tags.</p>"
+          }
+        }
+      },
+      "block_order": ["title", "price", "variant_picker", "buy_buttons", "description", "fabric_story", "care", "shipping"],
+      "settings": { "sticky_add_to_cart": true }
+    },
+    "recommendations": {
+      "type": "product-recommendations",
       "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main", "recommendations"]
 }

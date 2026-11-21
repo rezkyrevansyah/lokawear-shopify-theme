@@ -101,6 +101,15 @@
       "other": "{{ count }} colours"
     },
     "view_all": "View all",
-    "placeholder_title": "Product name"
+    "placeholder_title": "Product name",
+    "add_to_cart": "Add to bag",
+    "gallery": "Product images",
+    "zoom": "Open image {{ index }} of {{ count }} in full screen",
+    "show_image": "Show image {{ index }}",
+    "size_guide": "Size guide",
+    "size_note": "Measurements are of the garment laid flat. Between sizes? Take the larger one for a relaxed fit.",
+    "origin": "Origin",
+    "technique": "Technique",
+    "made_by": "Made by {{ name }}"
   }
 }

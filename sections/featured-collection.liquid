@@ -60,57 +60,19 @@
     align-items: center;
     gap: 1.5rem;
   }
-  .featured__arrows {
-    display: flex;
-    gap: 0.25rem;
-  }
-  .featured__arrow .icon {
-    transform: rotate(180deg);
-  }
-  .featured__list {
-    padding: 0;
-    list-style: none;
-  }
   .featured__list--grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem 1rem;
   }
-  .featured__list--slider {
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 70%;
-    gap: 1rem;
-    margin-inline: calc(var(--page-margin) * -1);
-    padding-inline: var(--page-margin);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--page-margin);
-    scrollbar-width: none;
-  }
-  .featured__list--slider::-webkit-scrollbar {
-    display: none;
-  }
-  .featured__list--slider > li {
-    scroll-snap-align: start;
-  }
   .featured__placeholder {
     display: grid;
     gap: 1rem;
-  }
-  @media (min-width: 750px) {
-    .featured__list--slider {
-      grid-auto-columns: 40%;
-    }
   }
   @media (min-width: 990px) {
     .featured__list--grid {
       grid-template-columns: repeat(4, 1fr);
       gap: 3rem 1.5rem;
-    }
-    .featured__list--slider {
-      grid-auto-columns: calc((100% - var(--page-margin) * 2 - 4.5rem) / 4);
-      gap: 1.5rem;
     }
   }
 {% endstylesheet %}
