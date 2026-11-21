@@ -17,7 +17,7 @@
         "a1": {
           "type": "announcement",
           "settings": {
-            "text": "Free shipping on orders over Rp500.000",
+            "text": "Free shipping on orders over $75",
             "link": "shopify://collections/all"
           }
         },

@@ -20,7 +20,7 @@ Lokawear menjual pakaian sehari-hari yang memakai motif dan kain Nusantara (tenu
 - **Target pembeli:** urban, 22–35 tahun, kerja kreatif/kantoran, ingin tampil lokal tanpa terlihat "pakaian adat"
 - **Value proposition:** setiap produk punya cerita asal kain (daerah, teknik, perajin), ditampilkan lewat metafields
 - **Kategori produk:** Outer & Kemeja, Atasan, Bawahan, Aksesoris (tote, scarf)
-- **Bahasa toko:** Inggris (sesuai bahasa email Ryvo), harga dalam IDR
+- **Bahasa toko:** Inggris (sesuai bahasa email Ryvo), harga dalam USD (base currency dev store terkunci di USD; brand lokal yang juga menjual ke pasar internasional)
 - **Nada tulisan:** tenang, hangat, singkat. Contoh: *Handwoven in Troso. Washed soft. Made to be worn every week.*
 
 Catatan: Lokawear adalah brand fiktif. Pastikan tidak ada nama atau logo yang mirip brand asli.
@@ -183,10 +183,10 @@ Cukup 16–20 produk di 4 koleksi supaya grid, filter, dan pagination terlihat h
 
 | Koleksi | Jumlah produk | Contoh produk | Rentang harga |
 | --- | --- | --- | --- |
-| Outer & Shirts | 5 | Lurik Overshirt, Tenun Chore Jacket | Rp450.000–Rp850.000 |
-| Tops | 5 | Batik Cap Boxy Tee, Linen Camp Shirt | Rp220.000–Rp390.000 |
-| Bottoms | 4 | Indigo Wide Trousers, Sarong Pants | Rp350.000–Rp520.000 |
-| Accessories | 4 | Tenun Tote Bag, Batik Scarf | Rp120.000–Rp280.000 |
+| Outer & Shirts | 5 | Lurik Overshirt, Tenun Chore Jacket | $68–$128 |
+| Tops | 5 | Batik Cap Boxy Tee, Linen Camp Shirt | $34–$58 |
+| Bottoms | 4 | Indigo Wide Trousers, Sarong Pants | $52–$78 |
+| Accessories | 4 | Tenun Tote Bag, Batik Scarf | $18–$42 |
 
 - **Varian:** setiap pakaian punya 2–3 warna dan ukuran S–XL; buat beberapa varian sold out untuk menguji badge
 - **Diskon:** 3–4 produk diberi compare-at price supaya badge Sale muncul
