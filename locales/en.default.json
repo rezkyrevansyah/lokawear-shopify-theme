@@ -1,7 +1,9 @@
 {
   "accessibility": {
     "skip_to_content": "Skip to content",
-    "close": "Close"
+    "close": "Close",
+    "previous": "Previous",
+    "next": "Next"
   },
   "404": {
     "title": "404",
@@ -86,5 +88,19 @@
   "footer": {
     "country": "Country / currency",
     "update": "Update"
+  },
+  "products": {
+    "sale": "Sale",
+    "sold_out": "Sold out",
+    "new": "New",
+    "sale_price": "Sale price",
+    "regular_price": "Regular price",
+    "from_price": "From {{ price }}",
+    "color_count": {
+      "one": "1 colour",
+      "other": "{{ count }} colours"
+    },
+    "view_all": "View all",
+    "placeholder_title": "Product name"
   }
 }

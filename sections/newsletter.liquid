@@ -1,0 +1,72 @@
+<div class="newsletter full-width scheme-{{ section.settings.color_scheme }}">
+  <div class="newsletter__inner section-padding" data-reveal>
+    <div class="lurik newsletter__lurik" aria-hidden="true"></div>
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="label newsletter__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2>{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="newsletter__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    <div class="newsletter__form">
+      {% render 'newsletter-form', id: 'Newsletter-section' %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .newsletter__inner {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+    width: var(--content-width);
+    max-width: 40rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .newsletter__lurik {
+    width: 3.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .newsletter__eyebrow,
+  .newsletter__text {
+    color: var(--color-muted);
+  }
+  .newsletter__form {
+    width: 100%;
+    margin-top: 0.75rem;
+    text-align: left;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:labels.color_scheme",
+      "options": [
+        { "value": "background", "label": "t:options.scheme.background" },
+        { "value": "surface", "label": "t:options.scheme.surface" },
+        { "value": "primary", "label": "t:options.scheme.primary" }
+      ],
+      "default": "primary"
+    },
+    { "type": "text", "id": "eyebrow", "label": "t:labels.eyebrow", "default": "Letters from the loom" },
+    { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "Stories, not spam" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>New drops, maker stories and care notes. Once a month, never more.</p>"
+    }
+  ],
+  "presets": [
+    { "name": "t:sections.newsletter.name" }
+  ]
+}
+{% endschema %}

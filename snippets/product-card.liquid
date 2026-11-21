@@ -1,0 +1,160 @@
+{% doc %}
+  Product card: 4:5 image, second image on hover, left-aligned name and price, automatic badges.
+  Badges: Sold out (no available variant), Sale (compare-at above price), New (tag "new").
+
+  @param {product} product - Product to show
+  @param {string} [sizes] - Image sizes attribute for the grid it sits in
+  @param {boolean} [eager] - Load the first image eagerly (first row above the fold)
+
+  @example
+  {% render 'product-card', product: product, sizes: '(min-width: 990px) 25vw, 50vw' %}
+{% enddoc %}
+
+{%- liquid
+  assign sizes = sizes | default: '(min-width: 990px) 25vw, 50vw'
+  assign first = product.featured_media
+  assign second = product.media[1]
+  assign first_alt = first.alt | default: product.title
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+
+  assign color_count = 0
+  for option in product.options_with_values
+    assign option_name = option.name | downcase
+    if option_name == 'color' or option_name == 'colour'
+      assign color_count = option.values.size
+    endif
+  endfor
+-%}
+
+<article class="card">
+  <a href="{{ product.url }}" class="card__media" tabindex="-1" aria-hidden="true">
+    {%- if first -%}
+      {{
+        first
+        | image_url: width: 1080
+        | image_tag:
+          widths: '360, 540, 720, 900, 1080',
+          sizes: sizes,
+          loading: loading,
+          alt: first_alt,
+          class: 'card__image'
+      }}
+      {%- if second -%}
+        {{
+          second
+          | image_url: width: 1080
+          | image_tag:
+            widths: '360, 540, 720, 900, 1080',
+            sizes: sizes,
+            loading: 'lazy',
+            alt: '',
+            class: 'card__image card__image--hover'
+        }}
+      {%- endif -%}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'card__image card__placeholder' }}
+    {%- endif -%}
+
+    <div class="card__badges">
+      {%- if product.available == false -%}
+        <span class="badge badge--muted label">{{ 'products.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price > product.price -%}
+        <span class="badge badge--sale label">{{ 'products.sale' | t }}</span>
+      {%- endif -%}
+      {%- if product.tags contains 'new' -%}
+        <span class="badge label">{{ 'products.new' | t }}</span>
+      {%- endif -%}
+    </div>
+  </a>
+
+  <div class="card__info">
+    <h3 class="card__title">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    {% render 'price', product: product %}
+    {%- if color_count > 1 -%}
+      <p class="card__meta text-muted">{{ 'products.color_count' | t: count: color_count }}</p>
+    {%- endif -%}
+  </div>
+</article>
+
+{% stylesheet %}
+  .card {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+  }
+  .card__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+  .card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 400ms ease, transform 800ms ease;
+  }
+  .card__placeholder {
+    fill: var(--color-muted);
+    opacity: 0.35;
+  }
+  .card__image--hover {
+    opacity: 0;
+  }
+  @media (hover: hover) {
+    .card:hover .card__image--hover {
+      opacity: 1;
+    }
+    .card:hover .card__image {
+      transform: scale(1.03);
+    }
+  }
+  .card__badges {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    gap: 0.375rem;
+  }
+  .badge {
+    padding: 0.3rem 0.55rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 0.6875rem;
+    border-radius: var(--radius);
+  }
+  .badge--sale {
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .badge--muted {
+    background: var(--color-text);
+    color: var(--color-bg);
+  }
+  .card__info {
+    display: grid;
+    gap: 0.25rem;
+  }
+  .card__title {
+    font-family: var(--font-heading--family);
+    font-size: 1.125rem;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .card__title a {
+    text-decoration: none;
+  }
+  .card__meta {
+    font-size: 0.8125rem;
+  }
+{% endstylesheet %}

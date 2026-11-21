@@ -61,7 +61,14 @@
     "color_line": "Lines and borders",
     "link": "Link",
     "image": "Image",
-    "heading": "Heading"
+    "heading": "Heading",
+    "color_scheme": "Color scheme",
+    "eyebrow": "Small label above heading",
+    "button_label": "Button label",
+    "button_link": "Button link",
+    "button_2_label": "Second button label",
+    "button_2_link": "Second button link",
+    "title": "Title"
   },
   "options": {
     "alignment": {
@@ -85,6 +92,16 @@
       "title": "Title",
       "subtitle": "Subtitle",
       "normal": "Normal text"
+    },
+    "scheme": {
+      "background": "Background",
+      "surface": "Surface",
+      "primary": "Indigo"
+    },
+    "ratio": {
+      "portrait": "Portrait 4:5",
+      "square": "Square",
+      "landscape": "Landscape 3:2"
     }
   },
   "info": {
@@ -119,6 +136,44 @@
       "disclaimer": "Disclaimer",
       "show_country_selector": "Show country / currency selector",
       "show_country_selector_info": "Appears when more than one market is active."
+    },
+    "hero": {
+      "name": "Hero",
+      "layout": "Layout",
+      "layout_split": "Split: text beside image",
+      "layout_overlay": "Overlay: text on image",
+      "text_position": "Text position",
+      "text_position_info": "Split layout uses left or right only.",
+      "mobile_image": "Mobile image",
+      "video": "Background video",
+      "video_info": "Replaces the image. Upload an MP4 to Shopify; it plays muted and looped.",
+      "height": "Minimum height on desktop",
+      "overlay": "Image darkening (overlay layout)"
+    },
+    "category_grid": {
+      "name": "Shop by category",
+      "block": "Category",
+      "image_info": "Defaults to the collection image.",
+      "title_info": "Defaults to the collection title."
+    },
+    "featured_collection": {
+      "name": "Featured collection",
+      "products_to_show": "Products to show",
+      "layout": "Layout",
+      "layout_grid": "Grid",
+      "layout_slider": "Slider",
+      "show_view_all": "Show \"View all\" link"
+    },
+    "image_with_text": {
+      "name": "Image with text",
+      "block": "Row",
+      "image_position": "First image position",
+      "image_position_info": "Rows alternate sides automatically.",
+      "ratio": "Image shape",
+      "show_lurik": "Show lurik stripe motif"
+    },
+    "newsletter": {
+      "name": "Newsletter"
     }
   }
 }

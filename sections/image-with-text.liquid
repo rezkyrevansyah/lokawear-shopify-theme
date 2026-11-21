@@ -1,0 +1,200 @@
+{%- liquid
+  assign first_side = section.settings.image_position
+-%}
+
+<div class="iwt-section full-width scheme-{{ section.settings.color_scheme }}">
+  <div class="iwt-wrap section-padding">
+    {%- for block in section.blocks -%}
+      {%- liquid
+        assign flip = false
+        assign odd = forloop.index | modulo: 2
+        if first_side == 'right' and odd == 1
+          assign flip = true
+        elsif first_side == 'left' and odd == 0
+          assign flip = true
+        endif
+      -%}
+      <div class="iwt iwt--{{ section.settings.ratio }}{% if flip %} iwt--flip{% endif %}" data-reveal {{ block.shopify_attributes }}>
+        <div class="iwt__media">
+          {%- if block.settings.image != blank -%}
+            {%- assign iwt_alt = block.settings.image.alt | default: '' -%}
+            {{
+              block.settings.image
+              | image_url: width: 1600
+              | image_tag:
+                widths: '540, 720, 1080, 1440, 1600',
+                sizes: '(min-width: 990px) 55vw, 100vw',
+                loading: 'lazy',
+                alt: iwt_alt
+            }}
+          {%- else -%}
+            {{ 'image' | placeholder_svg_tag: 'iwt__placeholder' }}
+          {%- endif -%}
+        </div>
+
+        <div class="iwt__content">
+          {%- if section.settings.show_lurik -%}
+            <div class="lurik iwt__lurik" aria-hidden="true"></div>
+          {%- endif -%}
+          {%- if block.settings.eyebrow != blank -%}
+            <p class="label iwt__eyebrow">{{ block.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if block.settings.heading != blank -%}
+            <h2 class="iwt__heading">{{ block.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <div class="iwt__text">{{ block.settings.text }}</div>
+          {%- endif -%}
+          {%- if block.settings.button_label != blank -%}
+            <a href="{{ block.settings.button_link | default: routes.root_url }}" class="link-arrow label iwt__link">
+              {{ block.settings.button_label }}
+              {% render 'icon', name: 'arrow' %}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .iwt-wrap {
+    display: grid;
+    gap: clamp(4rem, 9vw, 8rem);
+    width: var(--content-width);
+    margin-inline: auto;
+  }
+  .iwt {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+  .iwt__media {
+    overflow: hidden;
+    background: var(--color-surface);
+    border-radius: var(--radius);
+  }
+  .iwt--portrait .iwt__media { aspect-ratio: 4 / 5; }
+  .iwt--square .iwt__media { aspect-ratio: 1; }
+  .iwt--landscape .iwt__media { aspect-ratio: 3 / 2; }
+  .iwt__media img,
+  .iwt__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .iwt__placeholder {
+    fill: var(--color-muted);
+    opacity: 0.3;
+  }
+  .iwt__content {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
+    max-width: 30rem;
+  }
+  .iwt__lurik {
+    width: 3.5rem;
+  }
+  .iwt__eyebrow {
+    color: var(--color-muted);
+  }
+  .iwt__text {
+    color: var(--color-muted);
+    font-size: 1.0625rem;
+  }
+  .iwt__text p + p {
+    margin-top: 1em;
+  }
+  .iwt__link {
+    margin-top: 0.5rem;
+  }
+  @media (min-width: 990px) {
+    .iwt {
+      grid-template-columns: 7fr 5fr;
+      gap: clamp(3rem, 7vw, 7rem);
+    }
+    .iwt--flip {
+      grid-template-columns: 5fr 7fr;
+    }
+    .iwt--flip .iwt__media {
+      order: 2;
+    }
+    .iwt--flip .iwt__content {
+      justify-self: end;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.image_with_text.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "t:sections.image_with_text.image_position",
+      "info": "t:sections.image_with_text.image_position_info",
+      "options": [
+        { "value": "left", "label": "t:options.alignment.left" },
+        { "value": "right", "label": "t:options.alignment.right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "ratio",
+      "label": "t:sections.image_with_text.ratio",
+      "options": [
+        { "value": "portrait", "label": "t:options.ratio.portrait" },
+        { "value": "square", "label": "t:options.ratio.square" },
+        { "value": "landscape", "label": "t:options.ratio.landscape" }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:labels.color_scheme",
+      "options": [
+        { "value": "background", "label": "t:options.scheme.background" },
+        { "value": "surface", "label": "t:options.scheme.surface" },
+        { "value": "primary", "label": "t:options.scheme.primary" }
+      ],
+      "default": "surface"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_lurik",
+      "label": "t:sections.image_with_text.show_lurik",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "t:sections.image_with_text.block",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "t:labels.image" },
+        { "type": "text", "id": "eyebrow", "label": "t:labels.eyebrow", "default": "Our craft" },
+        { "type": "inline_richtext", "id": "heading", "label": "t:labels.heading", "default": "Woven slowly, by hand" },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:labels.text",
+          "default": "<p>Every metre of lurik is woven on a wooden loom in Klaten. It takes a weaver a full day to make enough cloth for one shirt.</p>"
+        },
+        { "type": "text", "id": "button_label", "label": "t:labels.button_label", "default": "Read our story" },
+        { "type": "url", "id": "button_link", "label": "t:labels.button_link" }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "t:sections.image_with_text.name",
+      "blocks": [{ "type": "row" }]
+    }
+  ]
+}
+{% endschema %}

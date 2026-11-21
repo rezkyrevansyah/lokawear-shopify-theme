@@ -9,12 +9,105 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "style-guide",
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "layout": "split",
+        "text_position": "left",
+        "button_link": "shopify://collections/all",
+        "button_2_link": "",
+        "color_scheme": "background"
+      }
+    },
+    "categories": {
+      "type": "category-grid",
+      "blocks": {
+        "c1": {
+          "type": "category",
+          "settings": {
+            "collection": "outer-shirts"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "collection": "tops"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "collection": "bottoms"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "collection": "accessories"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
       "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "frontpage",
+        "layout": "slider",
+        "products_to_show": 8
+      }
+    },
+    "craft": {
+      "type": "image-with-text",
+      "blocks": {
+        "r1": {
+          "type": "row",
+          "settings": {
+            "eyebrow": "Our craft",
+            "heading": "Woven slowly, <em>by hand</em>",
+            "text": "<p>Every metre of lurik is woven on a wooden loom in Klaten. It takes one weaver a full day to make enough cloth for a single shirt.</p><p>We cut it simply, so the stripe does the talking.</p>",
+            "button_label": "Read our story"
+          }
+        },
+        "r2": {
+          "type": "row",
+          "settings": {
+            "eyebrow": "Batik cap",
+            "heading": "Stamped with copper, <em>dyed in indigo</em>",
+            "text": "<p>Our batik is printed with hand-made copper stamps in Pekalongan, then dipped in natural indigo until the blue runs deep.</p>",
+            "button_label": "Meet the makers"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2"
+      ],
+      "settings": {
+        "image_position": "left",
+        "ratio": "portrait",
+        "color_scheme": "surface",
+        "show_lurik": true
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "color_scheme": "primary"
+      }
     }
   },
   "order": [
-    "main"
+    "hero",
+    "categories",
+    "featured",
+    "craft",
+    "newsletter"
   ]
 }

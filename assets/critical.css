@@ -288,14 +288,15 @@ main {
 
 /** Lurik stripe: thin woven-stripe motif used as a divider */
 .lurik {
+  --lurik-main: var(--color-primary);
   height: 11px;
   background: linear-gradient(
     180deg,
-    var(--color-primary) 0 3px,
+    var(--lurik-main) 0 3px,
     transparent 3px 5px,
     var(--color-accent) 5px 6px,
     transparent 6px 8px,
-    var(--color-primary) 8px 9px,
+    var(--lurik-main) 8px 9px,
     transparent 9px 10px,
     var(--color-text) 10px 11px
   );
@@ -333,4 +334,82 @@ main {
 }
 .icon-button .icon {
   width: 1.375rem;
+}
+
+/** Section color schemes, chosen per section in the theme editor */
+.scheme-surface {
+  background: var(--color-surface);
+}
+.scheme-primary {
+  --color-text: var(--color-bg);
+  --color-muted: rgb(246 241 233 / 0.78);
+  --color-line: rgb(246 241 233 / 0.3);
+  background: var(--color-primary);
+  color: var(--color-text);
+}
+.scheme-primary .button {
+  background: var(--color-bg);
+  border-color: var(--color-bg);
+  color: var(--color-primary);
+}
+.scheme-primary .button:hover,
+.scheme-primary .button--secondary {
+  background: transparent;
+  border-color: var(--color-bg);
+  color: var(--color-bg);
+}
+.scheme-primary .button--secondary:hover {
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+.scheme-primary .lurik {
+  --lurik-main: var(--color-bg);
+}
+.scheme-primary :focus-visible {
+  outline-color: var(--color-bg);
+}
+
+/** Vertical rhythm between homepage sections */
+.section-padding {
+  padding-block: clamp(3.5rem, 7vw, 6.5rem);
+}
+
+/** Section heading row: eyebrow + title on the left, optional link on the right */
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  margin-bottom: clamp(1.75rem, 4vw, 3rem);
+}
+.section-heading__eyebrow {
+  margin-bottom: 0.75rem;
+  color: var(--color-muted);
+}
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+.link-arrow .icon {
+  width: 1rem;
+  transition: transform 200ms ease;
+}
+.link-arrow:hover .icon {
+  transform: translateX(4px);
+}
+
+/** Fade-up on scroll. Only active when JS runs and the visitor allows motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.25rem);
+    transition: opacity 700ms ease, transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .js [data-reveal].is-revealed {
+    opacity: 1;
+    transform: none;
+  }
 }

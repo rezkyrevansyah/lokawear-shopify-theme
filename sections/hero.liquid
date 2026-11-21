@@ -1,0 +1,339 @@
+{%- liquid
+  assign layout = section.settings.layout
+  assign image = section.settings.image
+  assign mobile_image = section.settings.mobile_image | default: image
+  if layout == 'split'
+    assign sizes = '(min-width: 990px) 50vw, 100vw'
+  else
+    assign sizes = '100vw'
+  endif
+-%}
+
+<div
+  class="hero hero--{{ layout }} hero--text-{{ section.settings.text_position }} full-width scheme-{{ section.settings.color_scheme }}"
+  style="--hero-height: {{ section.settings.height }}svh; --hero-overlay: {{ section.settings.overlay | divided_by: 100.0 }};"
+>
+  <div class="hero__media">
+    {%- if section.settings.video != blank -%}
+      {{
+        section.settings.video
+        | video_tag:
+          autoplay: true,
+          loop: true,
+          muted: true,
+          playsinline: true,
+          controls: false,
+          image_size: '1600x',
+          class: 'hero__video'
+      }}
+    {%- elsif image != blank -%}
+      <picture>
+        <source
+          media="(min-width: 750px)"
+          srcset="{{ image | image_url: width: 1200 }} 1200w, {{ image | image_url: width: 1800 }} 1800w, {{ image | image_url: width: 2600 }} 2600w"
+          sizes="{{ sizes }}"
+        >
+        {%- assign hero_alt = image.alt | default: section.settings.heading | strip_html -%}
+        {{
+          mobile_image
+          | image_url: width: 1200
+          | image_tag:
+            widths: '480, 750, 1000, 1200',
+            sizes: '100vw',
+            loading: 'eager',
+            fetchpriority: 'high',
+            preload: true,
+            alt: hero_alt,
+            class: 'hero__image'
+        }}
+      </picture>
+    {%- else -%}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'hero__image hero__placeholder' }}
+    {%- endif -%}
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__copy">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="label hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h1 class="hero__heading">{{ section.settings.heading }}</h1>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="hero__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.button_label != blank or section.settings.button_2_label != blank -%}
+        <div class="hero__buttons">
+          {%- if section.settings.button_label != blank -%}
+            <a href="{{ section.settings.button_link | default: routes.all_products_collection_url }}" class="button">
+              {{- section.settings.button_label -}}
+            </a>
+          {%- endif -%}
+          {%- if section.settings.button_2_label != blank -%}
+            <a href="{{ section.settings.button_2_link | default: routes.root_url }}" class="button button--secondary">
+              {{- section.settings.button_2_label -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .hero {
+    position: relative;
+    display: grid;
+    overflow: hidden;
+  }
+  .hero__media {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+  .hero__image,
+  .hero__video,
+  .hero__media picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__placeholder {
+    fill: var(--color-muted);
+    opacity: 0.3;
+  }
+  .hero__content {
+    display: flex;
+    padding: clamp(2.5rem, 6vw, 5rem) var(--page-margin);
+  }
+  .hero__copy {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 34rem;
+  }
+  .hero__eyebrow {
+    color: var(--color-muted);
+  }
+  .hero__heading {
+    font-size: clamp(2.75rem, 1.5rem + 5vw, 5.75rem);
+    line-height: 1;
+  }
+  .hero__heading em,
+  .hero__heading i {
+    font-style: italic;
+  }
+  .hero__text {
+    max-width: 30rem;
+    color: var(--color-muted);
+    font-size: 1.125rem;
+  }
+  .hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Split: editorial text panel beside a tall portrait image */
+  .hero--split .hero__media {
+    aspect-ratio: 4 / 5;
+  }
+  @media (min-width: 990px) {
+    .hero--split {
+      grid-template-columns: 1fr 1fr;
+      min-height: var(--hero-height);
+    }
+    .hero--split .hero__media {
+      aspect-ratio: auto;
+    }
+    .hero--split.hero--text-right .hero__media {
+      order: 2;
+    }
+    .hero--split .hero__content {
+      align-items: center;
+      padding-inline: max(var(--page-margin), calc((100vw - var(--page-width)) / 2)) clamp(2rem, 5vw, 5rem);
+    }
+    .hero--split.hero--text-right .hero__content {
+      padding-inline: clamp(2rem, 5vw, 5rem) max(var(--page-margin), calc((100vw - var(--page-width)) / 2));
+    }
+  }
+
+  /* Overlay: full-bleed image with text on top */
+  .hero--overlay {
+    min-height: var(--hero-height);
+  }
+  .hero--overlay > * {
+    grid-area: 1 / 1;
+  }
+  .hero--overlay .hero__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(31 27 23 / var(--hero-overlay)), rgb(31 27 23 / calc(var(--hero-overlay) * 0.3)));
+  }
+  .hero--overlay .hero__content {
+    position: relative;
+    width: var(--content-width);
+    margin-inline: auto;
+    padding-inline: 0;
+    color: #f6f1e9;
+  }
+  .hero--overlay .hero__eyebrow,
+  .hero--overlay .hero__text {
+    color: rgb(246 241 233 / 0.85);
+  }
+  .hero--overlay .button {
+    background: #f6f1e9;
+    border-color: #f6f1e9;
+    color: var(--color-text);
+  }
+  .hero--overlay .button--secondary {
+    background: transparent;
+    color: #f6f1e9;
+  }
+  .hero--overlay.hero--text-left .hero__content {
+    align-items: flex-end;
+  }
+  .hero--overlay.hero--text-center .hero__content {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero--overlay.hero--text-center .hero__copy {
+    justify-items: center;
+  }
+  .hero--overlay.hero--text-right .hero__content {
+    align-items: flex-end;
+    justify-content: flex-end;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.hero.name",
+  "class": "section-hero",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.hero.layout",
+      "options": [
+        { "value": "split", "label": "t:sections.hero.layout_split" },
+        { "value": "overlay", "label": "t:sections.hero.layout_overlay" }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "t:sections.hero.text_position",
+      "options": [
+        { "value": "left", "label": "t:options.alignment.left" },
+        { "value": "center", "label": "t:options.alignment.center" },
+        { "value": "right", "label": "t:options.alignment.right" }
+      ],
+      "default": "left",
+      "info": "t:sections.hero.text_position_info"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:labels.image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:sections.hero.mobile_image"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:sections.hero.video",
+      "info": "t:sections.hero.video_info"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "t:sections.hero.height",
+      "default": 85
+    },
+    {
+      "type": "range",
+      "id": "overlay",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "t:sections.hero.overlay",
+      "default": 35
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:labels.color_scheme",
+      "options": [
+        { "value": "background", "label": "t:options.scheme.background" },
+        { "value": "surface", "label": "t:options.scheme.surface" },
+        { "value": "primary", "label": "t:options.scheme.primary" }
+      ],
+      "default": "background"
+    },
+    {
+      "type": "header",
+      "content": "t:general.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "t:labels.eyebrow",
+      "default": "New season · Lurik & Tenun"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "t:labels.heading",
+      "default": "Rooted in craft. <em>Cut for today.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>Everyday clothing in handwoven Nusantara fabric. Washed soft, made to be worn every week.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:labels.button_label",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:labels.button_link"
+    },
+    {
+      "type": "text",
+      "id": "button_2_label",
+      "label": "t:labels.button_2_label",
+      "default": "Our craft"
+    },
+    {
+      "type": "url",
+      "id": "button_2_link",
+      "label": "t:labels.button_2_link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero.name"
+    }
+  ]
+}
+{% endschema %}

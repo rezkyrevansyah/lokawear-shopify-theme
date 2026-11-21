@@ -1,0 +1,60 @@
+{% doc %}
+  Product price with sale and "from" states.
+
+  @param {product} product - Product to price
+  @param {variant} [variant] - Price a specific variant instead of the product range
+
+  @example
+  {% render 'price', product: product %}
+{% enddoc %}
+
+{%- liquid
+  if variant
+    assign price = variant.price
+    assign compare_at = variant.compare_at_price
+    assign varies = false
+  else
+    assign price = product.price
+    assign compare_at = product.compare_at_price
+    assign varies = product.price_varies
+  endif
+
+  assign on_sale = false
+  if compare_at > price
+    assign on_sale = true
+  endif
+-%}
+
+<div class="price{% if on_sale %} price--sale{% endif %}">
+  {%- if on_sale -%}
+    <span class="visually-hidden">{{ 'products.sale_price' | t }}</span>
+  {%- endif -%}
+  <span class="price__current">
+    {%- if varies -%}
+      {%- assign price_money = price | money -%}
+      {{ 'products.from_price' | t: price: price_money }}
+    {%- else -%}
+      {{ price | money }}
+    {%- endif -%}
+  </span>
+  {%- if on_sale -%}
+    <span class="visually-hidden">{{ 'products.regular_price' | t }}</span>
+    <s class="price__compare">{{ compare_at | money }}</s>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+  .price--sale .price__current {
+    color: var(--color-accent);
+  }
+  .price__compare {
+    color: var(--color-muted);
+    font-size: 0.875em;
+  }
+{% endstylesheet %}
