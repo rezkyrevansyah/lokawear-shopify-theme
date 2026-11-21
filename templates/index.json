@@ -16,7 +16,8 @@
         "text_position": "left",
         "button_link": "shopify://collections/all",
         "button_2_link": "",
-        "color_scheme": "background"
+        "color_scheme": "background",
+        "image": "shopify://shop_images/lokawear-hero.jpg"
       }
     },
     "categories": {
@@ -25,25 +26,29 @@
         "c1": {
           "type": "category",
           "settings": {
-            "collection": "outer-shirts"
+            "collection": "outer-shirts",
+            "image": "shopify://shop_images/lokawear-cat-outer.jpg"
           }
         },
         "c2": {
           "type": "category",
           "settings": {
-            "collection": "tops"
+            "collection": "tops",
+            "image": "shopify://shop_images/lokawear-cat-tops.jpg"
           }
         },
         "c3": {
           "type": "category",
           "settings": {
-            "collection": "bottoms"
+            "collection": "bottoms",
+            "image": "shopify://shop_images/lokawear-cat-bottoms.jpg"
           }
         },
         "c4": {
           "type": "category",
           "settings": {
-            "collection": "accessories"
+            "collection": "accessories",
+            "image": "shopify://shop_images/lokawear-cat-accessories.jpg"
           }
         }
       },
@@ -72,7 +77,8 @@
             "eyebrow": "Our craft",
             "heading": "Woven slowly, <em>by hand</em>",
             "text": "<p>Every metre of lurik is woven on a wooden loom in Klaten. It takes one weaver a full day to make enough cloth for a single shirt.</p><p>We cut it simply, so the stripe does the talking.</p>",
-            "button_label": "Read our story"
+            "button_label": "Read our story",
+            "image": "shopify://shop_images/lokawear-craft-loom.jpg"
           }
         },
         "r2": {
@@ -81,7 +87,8 @@
             "eyebrow": "Batik cap",
             "heading": "Stamped with copper, <em>dyed in indigo</em>",
             "text": "<p>Our batik is printed with hand-made copper stamps in Pekalongan, then dipped in natural indigo until the blue runs deep.</p>",
-            "button_label": "Meet the makers"
+            "button_label": "Meet the makers",
+            "image": "shopify://shop_images/lokawear-craft-batik.jpg"
           }
         }
       },

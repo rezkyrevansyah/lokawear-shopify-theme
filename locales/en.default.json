@@ -78,7 +78,7 @@
     "search": "Search",
     "account": "Account",
     "cart": "Bag",
-    "view_all": "View all {{ title }}"
+    "view_all": "Shop all"
   },
   "newsletter": {
     "email": "Email address",

@@ -52,7 +52,31 @@
         "wordmark": "Lokawear",
         "menu": "main-menu",
         "sticky": true
-      }
+      },
+      "blocks": {
+        "promo1": {
+          "type": "mega_promo",
+          "settings": {
+            "parent": "Shop",
+            "image": "shopify://shop_images/lokawear-mega-tenun.jpg",
+            "heading": "The tenun edit",
+            "link": "shopify://collections/all"
+          }
+        },
+        "promo2": {
+          "type": "mega_promo",
+          "settings": {
+            "parent": "Shop",
+            "image": "shopify://shop_images/lokawear-craft-loom.jpg",
+            "heading": "Made by hand",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "promo1",
+        "promo2"
+      ]
     }
   },
   "order": [

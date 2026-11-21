@@ -62,6 +62,12 @@
               <div class="mega">
                 <div class="mega__inner">
                   <ul class="mega__columns" role="list">
+                    <li class="mega__all">
+                      <a href="{{ link.url }}" class="link-arrow label">
+                        {{ 'header.view_all' | t: title: link.title }}
+                        {% render 'icon', name: 'arrow' %}
+                      </a>
+                    </li>
                     {%- for child in link.links -%}
                       <li>
                         <a href="{{ child.url }}" class="mega__heading">{{ child.title }}</a>
@@ -306,16 +312,21 @@
     }
     .mega__columns {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
       align-content: start;
-      gap: 1.5rem 2rem;
+      gap: 1rem;
       padding: 0;
       list-style: none;
     }
     .mega__heading {
       font-family: var(--font-heading--family);
-      font-size: 1.25rem;
+      font-size: 1.75rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
       text-decoration: none;
+    }
+    .mega__all {
+      margin-bottom: 0.75rem;
+      color: var(--color-muted);
     }
     .mega__links {
       display: grid;
