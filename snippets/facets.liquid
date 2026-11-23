@@ -176,8 +176,9 @@
                       {% endif %}
                     >
                     <label for="{{ input_id }}" class="facet__label">
-                      {%- if value.swatch.color -%}
-                        <span class="swatch" style="--swatch: {{ value.swatch.color }}"></span>
+                      {%- assign filter_name = filter.label | downcase -%}
+                      {%- if value.swatch.color or filter_name == 'color' or filter_name == 'colour' -%}
+                        {% render 'swatch', name: value.label, color: value.swatch.color %}
                       {%- endif -%}
                       {{ value.label }}
                       <span class="text-muted">({{ value.count }})</span>

@@ -1,0 +1,57 @@
+{% doc %}
+  Colour dot for a colour option value. Uses the Shopify swatch colour when the merchant set one,
+  otherwise maps Lokawear's colour names to hex values.
+
+  @param {string} name - Colour name, for example "Indigo"
+  @param {string} [color] - Swatch colour from Shopify (value.swatch.color)
+
+  @example
+  {% render 'swatch', name: value.name, color: value.swatch.color %}
+{% enddoc %}
+
+{%- liquid
+  assign hex = color
+  if hex == blank
+    case name
+      when 'Indigo'
+        assign hex = '#2E3A5C'
+      when 'Washed Indigo'
+        assign hex = '#5B6E8F'
+      when 'Indigo Stripe'
+        assign hex = '#3A4A6E'
+      when 'Navy'
+        assign hex = '#1F2A44'
+      when 'Natural'
+        assign hex = '#E8DFCC'
+      when 'Cream'
+        assign hex = '#F1E8D6'
+      when 'White Stripe'
+        assign hex = '#F7F4EE'
+      when 'Sand'
+        assign hex = '#D8C3A0'
+      when 'Tan'
+        assign hex = '#B88B5A'
+      when 'Taupe'
+        assign hex = '#8E7F6E'
+      when 'Sogan Brown'
+        assign hex = '#7A4A24'
+      when 'Olive'
+        assign hex = '#6B6B3A'
+      when 'Sage'
+        assign hex = '#9CA88A'
+      when 'Mint'
+        assign hex = '#B9D3C2'
+      when 'Peach'
+        assign hex = '#E8B796'
+      when 'Grey'
+        assign hex = '#8C8A86'
+      when 'Charcoal'
+        assign hex = '#3B3836'
+      when 'Black'
+        assign hex = '#1F1B17'
+      else
+        assign hex = 'var(--color-line)'
+    endcase
+  endif
+-%}
+<span class="swatch" style="--swatch: {{ hex }}"></span>
