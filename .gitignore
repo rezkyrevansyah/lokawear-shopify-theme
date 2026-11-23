@@ -18,3 +18,7 @@ release
 
 # Local agent notes / secrets
 CLAUDE.local.md
+
+# Test output
+test-results/
+playwright-report/

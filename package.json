@@ -1,0 +1,16 @@
+{
+  "name": "lokawear-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Custom Shopify Online Store 2.0 theme for Lokawear, a demo Indonesian textile fashion brand.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "shopify theme dev --store lokawear-demo",
+    "check": "shopify theme check",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.65.1"
+  }
+}
