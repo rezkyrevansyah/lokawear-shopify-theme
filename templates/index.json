@@ -15,7 +15,7 @@
         "layout": "split",
         "text_position": "left",
         "button_link": "shopify://collections/all",
-        "button_2_link": "",
+        "button_2_link": "/pages/our-craft",
         "color_scheme": "background",
         "image": "shopify://shop_images/lokawear-hero.jpg"
       }
@@ -78,6 +78,7 @@
             "heading": "Woven slowly, <em>by hand</em>",
             "text": "<p>Every metre of lurik is woven on a wooden loom in Klaten. It takes one weaver a full day to make enough cloth for a single shirt.</p><p>We cut it simply, so the stripe does the talking.</p>",
             "button_label": "Read our story",
+            "button_link": "/pages/our-craft",
             "image": "shopify://shop_images/lokawear-craft-loom.jpg"
           }
         },
@@ -88,6 +89,7 @@
             "heading": "Stamped with copper, <em>dyed in indigo</em>",
             "text": "<p>Our batik is printed with hand-made copper stamps in Pekalongan, then dipped in natural indigo until the blue runs deep.</p>",
             "button_label": "Meet the makers",
+            "button_link": "/pages/our-craft",
             "image": "shopify://shop_images/lokawear-craft-batik.jpg"
           }
         }

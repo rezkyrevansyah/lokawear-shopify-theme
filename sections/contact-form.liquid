@@ -1,0 +1,134 @@
+<div class="contact section-padding">
+  <div class="contact__intro">
+    <p class="label text-muted">{{ section.settings.eyebrow }}</p>
+    <h1 class="h2">{{ section.settings.heading | default: page.title }}</h1>
+    {%- if section.settings.text != blank -%}
+      <div class="text-muted contact__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.details != blank -%}
+      <div class="contact__details">{{ section.settings.details }}</div>
+    {%- endif -%}
+  </div>
+
+  {%- form 'contact', id: 'ContactForm', class: 'contact__form' -%}
+    {%- if form.posted_successfully? -%}
+      <p class="contact__status" role="status" tabindex="-1" autofocus>{{ 'contact.success' | t }}</p>
+    {%- elsif form.errors -%}
+      <div class="contact__status contact__status--error" role="alert" tabindex="-1" autofocus>
+        {{ form.errors | default_errors }}
+      </div>
+    {%- endif -%}
+
+    <div class="contact__row">
+      <div class="field">
+        <label for="ContactForm-name">{{ 'contact.name' | t }}</label>
+        <input id="ContactForm-name" class="input" type="text" name="contact[name]" autocomplete="name" value="{{ form.name }}">
+      </div>
+      <div class="field">
+        <label for="ContactForm-email">{{ 'contact.email' | t }} <span aria-hidden="true">*</span></label>
+        <input
+          id="ContactForm-email"
+          class="input"
+          type="email"
+          name="contact[email]"
+          autocomplete="email"
+          value="{{ form.email }}"
+          required
+          {% if form.errors contains 'email' %}
+            aria-invalid="true"
+          {% endif %}
+        >
+      </div>
+    </div>
+    <div class="field">
+      <label for="ContactForm-topic">{{ 'contact.topic' | t }}</label>
+      <select id="ContactForm-topic" class="input" name="contact[topic]">
+        {%- assign topics = 'contact.topics' | t | split: ',' -%}
+        {%- for topic in topics -%}
+          <option>{{ topic | strip }}</option>
+        {%- endfor -%}
+      </select>
+    </div>
+    <div class="field">
+      <label for="ContactForm-body">{{ 'contact.message' | t }} <span aria-hidden="true">*</span></label>
+      <textarea id="ContactForm-body" class="input" name="contact[body]" rows="6" required>{{ form.body }}</textarea>
+    </div>
+    <button type="submit" class="button">{{ 'contact.send' | t }}</button>
+  {%- endform -%}
+</div>
+
+{% stylesheet %}
+  .contact {
+    display: grid;
+    gap: 3rem;
+  }
+  .contact__intro {
+    display: grid;
+    align-content: start;
+    gap: 1.25rem;
+    max-width: 30rem;
+  }
+  .contact__text {
+    font-size: 1.0625rem;
+  }
+  .contact__details {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+  .contact__details p + p {
+    margin-top: 1em;
+  }
+  .contact__form {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .contact__form .button {
+    justify-self: start;
+  }
+  .contact__row {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .contact__status {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .contact__status--error {
+    color: var(--color-accent);
+  }
+  @media (min-width: 750px) {
+    .contact__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (min-width: 990px) {
+    .contact {
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(3rem, 8vw, 8rem);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.contact.name",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:labels.eyebrow", "default": "Get in touch" },
+    { "type": "text", "id": "heading", "label": "t:labels.heading", "default": "Say hello" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>Questions about sizing, fabric or an order? We reply within one working day.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "details",
+      "label": "t:sections.contact.details",
+      "default": "<p><strong>Email</strong><br>hello@lokawear.example</p><p><strong>Studio hours</strong><br>Monday to Friday, 9:00 to 17:00 WIB</p>"
+    }
+  ],
+  "presets": [{ "name": "t:sections.contact.name" }]
+}
+{% endschema %}

@@ -641,35 +641,9 @@
     margin-top: 0.5rem;
   }
 
-  /* Accordions */
-  .accordion {
-    border-block: 1px solid var(--color-line);
-  }
-  .accordion + .accordion {
+  /* Stacked accordions in the info column cancel the grid gap so their borders touch */
+  .product__info .accordion + .accordion {
     margin-top: -1.75rem;
-    border-top: 0;
-  }
-  .accordion summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 3.5rem;
-    list-style: none;
-    cursor: pointer;
-  }
-  .accordion summary::-webkit-details-marker {
-    display: none;
-  }
-  .accordion summary .icon {
-    width: 1rem;
-    transition: transform 200ms ease;
-  }
-  .accordion[open] summary .icon {
-    transform: rotate(180deg);
-  }
-  .accordion__content {
-    padding-bottom: 1.25rem;
-    color: var(--color-muted);
   }
 
   /* Size chart */

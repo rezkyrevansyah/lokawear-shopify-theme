@@ -1,19 +1,45 @@
-{% comment %}
-  This section is used in the 404 template to render page shown when customers
-  enter an invalid store URL.
+<div class="not-found section-padding">
+  <div class="lurik not-found__lurik" aria-hidden="true"></div>
+  <p class="label text-muted">{{ '404.title' | t }}</p>
+  <h1>{{ '404.heading' | t }}</h1>
+  <p class="text-muted not-found__text">{{ '404.not_found' | t }}</p>
 
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/404
-{% endcomment %}
+  <form action="{{ routes.search_url }}" method="get" role="search" class="not-found__search">
+    <label for="NotFound-search" class="visually-hidden">{{ 'search.placeholder' | t }}</label>
+    <input id="NotFound-search" class="input" type="search" name="q" placeholder="{{ 'search.placeholder' | t }}">
+    <input type="hidden" name="type" value="product">
+    <button type="submit" class="button">{{ 'search.submit' | t }}</button>
+  </form>
 
-<h1>{{ '404.title' | t }}</h1>
+  <a href="{{ routes.all_products_collection_url }}" class="link-arrow label">
+    {{ '404.back_to_shopping' | t }}
+    {% render 'icon', name: 'arrow' %}
+  </a>
+</div>
 
-<p>
-  {{ '404.not_found' | t }}
-</p>
-
-<a href="{{ routes.all_products_collection_url }}">
-  {{ '404.back_to_shopping' | t }}
-</a>
+{% stylesheet %}
+  .not-found {
+    display: grid;
+    justify-items: center;
+    gap: 1.5rem;
+    max-width: 40rem;
+    margin-inline: auto;
+    padding-block: clamp(5rem, 12vw, 9rem);
+    text-align: center;
+  }
+  .not-found__lurik {
+    width: 3.5rem;
+  }
+  .not-found__text {
+    font-size: 1.125rem;
+  }
+  .not-found__search {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+    margin-block: 1rem;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

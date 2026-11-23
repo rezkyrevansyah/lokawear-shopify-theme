@@ -6,9 +6,10 @@
     "next": "Next"
   },
   "404": {
-    "title": "404",
-    "not_found": "Page not found.",
-    "back_to_shopping": "Back to shopping"
+    "title": "Error 404",
+    "not_found": "The page you are looking for has moved or never existed. Try a search, or start from the shop.",
+    "back_to_shopping": "Back to shopping",
+    "heading": "Lost the thread"
   },
   "blog": {
     "article_comments": "Comments",
@@ -17,7 +18,10 @@
     "comment_form_email": "Email",
     "comment_form_name": "Name",
     "comment_form_submit": "Post",
-    "comment_form_title": "Add a comment"
+    "comment_form_title": "Add a comment",
+    "read_more": "Read the story",
+    "back": "Back to {{ title }}",
+    "empty": "No stories yet."
   },
   "cart": {
     "checkout": "Checkout",
@@ -133,5 +137,22 @@
     "origin": "Origin",
     "technique": "Technique",
     "made_by": "Made by {{ name }}"
+  },
+  "contact": {
+    "name": "Name",
+    "email": "Email",
+    "topic": "Topic",
+    "topics": "General question, Sizing and fit, An existing order, Wholesale",
+    "message": "Message",
+    "send": "Send message",
+    "success": "Thank you. We will get back to you within one working day."
+  },
+  "sections": {
+    "makers": {
+      "empty": "Add entries to the Artisan metaobject to show your makers here."
+    },
+    "lookbook": {
+      "shop_the_look": "Shop the look"
+    }
   }
 }

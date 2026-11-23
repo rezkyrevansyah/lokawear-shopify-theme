@@ -1,0 +1,97 @@
+{% doc %}
+  Journal article card: image, date, title and excerpt. A featured card (parent class
+  .articles__item--featured) lays out image and text side by side on desktop.
+
+  @param {article} article - Article to show
+  @param {boolean} [eager] - Load the image eagerly
+
+  @example
+  {% render 'article-card', article: article %}
+{% enddoc %}
+
+{%- liquid
+  assign loading = 'lazy'
+  if eager
+    assign loading = 'eager'
+  endif
+-%}
+
+<article class="article-card">
+  <a href="{{ article.url }}" class="article-card__media" tabindex="-1" aria-hidden="true">
+    {%- if article.image -%}
+      {{
+        article.image
+        | image_url: width: 1600
+        | image_tag:
+          widths: '540, 720, 1080, 1600',
+          sizes: '(min-width: 990px) 60vw, (min-width: 750px) 50vw, 100vw',
+          loading: loading,
+          alt: ''
+      }}
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'article-card__placeholder' }}
+    {%- endif -%}
+  </a>
+  <div class="article-card__body">
+    <p class="label text-muted">{{ article.published_at | time_tag: format: 'month_day_year' }}</p>
+    <h2 class="article-card__title">
+      <a href="{{ article.url }}">{{ article.title }}</a>
+    </h2>
+    {%- if article.excerpt_or_content != blank -%}
+      <p class="text-muted">{{ article.excerpt_or_content | strip_html | truncatewords: 26 }}</p>
+    {%- endif -%}
+    <a href="{{ article.url }}" class="link-arrow label" aria-hidden="true" tabindex="-1">
+      {{ 'blog.read_more' | t }}
+      {% render 'icon', name: 'arrow' %}
+    </a>
+  </div>
+</article>
+
+{% stylesheet %}
+  .article-card {
+    display: grid;
+    gap: 1.25rem;
+  }
+  .article-card__media {
+    display: block;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+  }
+  .article-card__media img,
+  .article-card__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 800ms ease;
+  }
+  .article-card__placeholder {
+    fill: var(--color-muted);
+    opacity: 0.3;
+  }
+  .article-card:hover .article-card__media img {
+    transform: scale(1.03);
+  }
+  .article-card__body {
+    display: grid;
+    justify-items: start;
+    gap: 0.75rem;
+  }
+  .article-card__title {
+    font-size: 1.625rem;
+  }
+  .article-card__title a {
+    text-decoration: none;
+  }
+  @media (min-width: 990px) {
+    .articles__item--featured .article-card {
+      grid-template-columns: 7fr 5fr;
+      align-items: center;
+      gap: clamp(2rem, 5vw, 5rem);
+    }
+    .articles__item--featured .article-card__title {
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 3rem);
+    }
+  }
+{% endstylesheet %}

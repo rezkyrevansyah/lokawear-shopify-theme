@@ -1,0 +1,77 @@
+{
+  "sections": {
+    "main": {
+      "type": "faq",
+      "blocks": {
+        "shipping": {
+          "type": "question",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders ship from our studio within two working days. Delivery takes 2 to 4 days within Java and 3 to 7 days elsewhere in Indonesia. Shipping is free on orders over $75.</p>"
+          }
+        },
+        "returns": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return or exchange something?",
+            "answer": "<p>Yes. Unworn pieces with their tags can be returned or exchanged within 30 days. Start a return from the contact page and we will send you a label.</p>"
+          }
+        },
+        "sizing": {
+          "type": "question",
+          "settings": {
+            "question": "How do your clothes fit?",
+            "answer": "<p>Most pieces are cut relaxed. Every product page has a size guide with garment measurements. If you are between sizes, take the larger one for a looser fit.</p>"
+          }
+        },
+        "fabric": {
+          "type": "question",
+          "settings": {
+            "question": "Is the fabric really handmade?",
+            "answer": "<p>Yes. Our lurik and tenun are woven on hand-operated looms, and our batik is stamped by hand with copper tools. Small irregularities in stripe, colour and pattern are part of the cloth, not defects.</p>"
+          }
+        },
+        "care": {
+          "type": "question",
+          "settings": {
+            "question": "How should I wash it?",
+            "answer": "<p>Wash cold, inside out, and dry in the shade. Indigo pieces should be washed separately for the first few washes. Each product page lists its own care instructions.</p>"
+          }
+        },
+        "colour": {
+          "type": "question",
+          "settings": {
+            "question": "Why does my piece look slightly different from the photo?",
+            "answer": "<p>Natural dyes and hand weaving make every batch a little different. We photograph real pieces, but expect small shifts in shade and stripe placement.</p>"
+          }
+        },
+        "makers": {
+          "type": "question",
+          "settings": {
+            "question": "Who makes the cloth?",
+            "answer": "<p>Family workshops in Klaten, Troso and Pekalongan. You can meet them on our Our Craft page, and each product page names the maker behind it.</p>"
+          }
+        }
+      },
+      "block_order": ["shipping", "returns", "sizing", "fabric", "care", "colour", "makers"],
+      "settings": {
+        "eyebrow": "Help",
+        "heading": "Questions, answered"
+      }
+    },
+    "contact_cta": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "surface",
+        "alignment": "center",
+        "show_lurik": true,
+        "eyebrow": "Still wondering?",
+        "heading": "Ask us anything",
+        "text": "<p>We reply within one working day.</p>",
+        "button_label": "Contact us",
+        "button_link": "/pages/contact"
+      }
+    }
+  },
+  "order": ["main", "contact_cta"]
+}

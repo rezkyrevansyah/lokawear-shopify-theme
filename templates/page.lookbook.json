@@ -1,0 +1,68 @@
+{
+  "sections": {
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "background",
+        "alignment": "center",
+        "show_lurik": true,
+        "eyebrow": "Lookbook",
+        "heading": "Season one: <em>Slow days</em>",
+        "text": "<p>Washed linen, soft lurik and a little indigo, worn the way we actually live in them. Tap a number to shop the piece.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "look_1": {
+      "type": "lookbook",
+      "blocks": {
+        "p1": { "type": "pin", "settings": { "product": "lurik-knit-polo", "x": 30, "y": 38 } },
+        "p2": { "type": "pin", "settings": { "product": "indigo-wide-trousers", "x": 31, "y": 75 } }
+      },
+      "block_order": ["p1", "p2"],
+      "settings": {
+        "image": "shopify://shop_images/lokawear-look-1.jpg",
+        "image_position": "left",
+        "eyebrow": "Look 01",
+        "heading": "Morning light",
+        "text": "<p>A knitted polo and wide trousers. Easy enough for the house, sharp enough for the café.</p>"
+      }
+    },
+    "look_2": {
+      "type": "lookbook",
+      "blocks": {
+        "p1": { "type": "pin", "settings": { "product": "tenun-trim-tee", "x": 34, "y": 38 } },
+        "p2": { "type": "pin", "settings": { "product": "lurik-overshirt", "x": 62, "y": 36 } },
+        "p3": { "type": "pin", "settings": { "product": "indigo-work-shirt", "x": 60, "y": 62 } }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "image": "shopify://shop_images/lokawear-look-2.jpg",
+        "image_position": "right",
+        "eyebrow": "Look 02",
+        "heading": "Two of us",
+        "text": "<p>Layered neutrals for slow weekends. The lurik overshirt is cut boxy, so it works for both.</p>"
+      }
+    },
+    "look_3": {
+      "type": "lookbook",
+      "blocks": {
+        "p1": { "type": "pin", "settings": { "product": "batik-cap-kimono-jacket", "x": 55, "y": 40 } },
+        "p2": { "type": "pin", "settings": { "product": "linen-camp-shirt", "x": 44, "y": 62 } }
+      },
+      "block_order": ["p1", "p2"],
+      "settings": {
+        "image": "shopify://shop_images/lokawear-look-3.jpg",
+        "image_position": "left",
+        "eyebrow": "Look 03",
+        "heading": "Afternoon off",
+        "text": "<p>An open kimono jacket over washed linen. The batik lining only shows when you move.</p>"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": ["intro", "look_1", "look_2", "look_3", "newsletter"]
+}

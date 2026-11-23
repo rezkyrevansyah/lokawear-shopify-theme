@@ -1,35 +1,68 @@
-{% comment %}
-  This section is used in the blog template to render the blog page listing all
-  articles within a blog.
+<div class="collection-hero blog-hero">
+  <p class="label text-muted">{{ section.settings.eyebrow }}</p>
+  <h1>{{ blog.title }}</h1>
+  {%- if section.settings.text != blank -%}
+    <div class="collection-hero__text">{{ section.settings.text }}</div>
+  {%- endif -%}
+</div>
 
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/blog
-{% endcomment %}
-
-<h1>{{ blog.title }}</h1>
-
-{% paginate blog.articles by 5 %}
-  {% for article in blog.articles %}
-    <div>
-      {% if article.image %}
-        {{ article.image | image_url: width: 1000 | image_tag }}
-      {% endif %}
-      <h2>
-        {{ article.title | link_to: article.url }}
-      </h2>
-      {% assign date = article.published_at | time_tag: format: 'date' %}
-      <p>{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p>
-      <p>{{ article.excerpt }}</p>
-    </div>
-  {% endfor %}
+{%- paginate blog.articles by 9 -%}
+  <ul class="articles" role="list">
+    {%- for article in blog.articles -%}
+      <li class="articles__item{% if forloop.first and paginate.current_page == 1 %} articles__item--featured{% endif %}">
+        {% render 'article-card', article: article, eager: forloop.first %}
+      </li>
+    {%- else -%}
+      <li class="text-muted">{{ 'blog.empty' | t }}</li>
+    {%- endfor -%}
+  </ul>
 
   {%- if paginate.pages > 1 -%}
-    {{- paginate | default_pagination -}}
+    <nav class="blog-pagination" aria-label="{{ 'collections.pagination' | t }}">
+      {{ paginate | default_pagination }}
+    </nav>
   {%- endif -%}
-{% endpaginate %}
+{%- endpaginate -%}
+
+{% stylesheet %}
+  .articles {
+    display: grid;
+    gap: 3rem 1.5rem;
+    padding: 0 0 6rem;
+    list-style: none;
+  }
+  .blog-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding-bottom: 5rem;
+  }
+  @media (min-width: 750px) {
+    .articles {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .articles__item--featured {
+      grid-column: 1 / -1;
+    }
+  }
+  @media (min-width: 990px) {
+    .articles {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:general.blog",
-  "settings": []
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:labels.eyebrow", "default": "Journal" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>Notes from the looms, dye vats and stamping tables where our cloth begins.</p>"
+    }
+  ]
 }
 {% endschema %}

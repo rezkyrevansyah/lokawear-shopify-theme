@@ -1,0 +1,97 @@
+<div class="rich-text full-width scheme-{{ section.settings.color_scheme }}">
+  <div class="rich-text__inner rich-text__inner--{{ section.settings.alignment }} section-padding" data-reveal>
+    {%- if section.settings.show_lurik -%}
+      <div class="lurik rich-text__lurik" aria-hidden="true"></div>
+    {%- endif -%}
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="label rich-text__eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h2 class="rich-text__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="rich-text__text">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank -%}
+      <a href="{{ section.settings.button_link | default: routes.root_url }}" class="link-arrow label">
+        {{ section.settings.button_label }}
+        {% render 'icon', name: 'arrow' %}
+      </a>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .rich-text__inner {
+    display: grid;
+    gap: 1.5rem;
+    width: var(--content-width);
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+  .rich-text__inner--center {
+    justify-items: center;
+    text-align: center;
+  }
+  .rich-text__lurik {
+    width: 3.5rem;
+  }
+  .rich-text__eyebrow,
+  .rich-text__text {
+    color: var(--color-muted);
+  }
+  .rich-text__heading em {
+    color: var(--color-accent);
+  }
+  .scheme-primary .rich-text__heading em {
+    color: inherit;
+  }
+  .rich-text__text {
+    max-width: 38rem;
+    font-size: 1.125rem;
+  }
+  .rich-text__text p + p {
+    margin-top: 1em;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.rich_text.name",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:labels.color_scheme",
+      "options": [
+        { "value": "background", "label": "t:options.scheme.background" },
+        { "value": "surface", "label": "t:options.scheme.surface" },
+        { "value": "primary", "label": "t:options.scheme.primary" }
+      ],
+      "default": "background"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "t:labels.alignment",
+      "options": [
+        { "value": "left", "label": "t:options.alignment.left" },
+        { "value": "center", "label": "t:options.alignment.center" }
+      ],
+      "default": "center"
+    },
+    { "type": "checkbox", "id": "show_lurik", "label": "t:sections.image_with_text.show_lurik", "default": true },
+    { "type": "text", "id": "eyebrow", "label": "t:labels.eyebrow", "default": "Our story" },
+    { "type": "inline_richtext", "id": "heading", "label": "t:labels.heading", "default": "Cloth with a <em>hometown</em>" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "t:labels.text",
+      "default": "<p>Tell your brand story in a few short paragraphs.</p>"
+    },
+    { "type": "text", "id": "button_label", "label": "t:labels.button_label" },
+    { "type": "url", "id": "button_link", "label": "t:labels.button_link" }
+  ],
+  "presets": [{ "name": "t:sections.rich_text.name" }]
+}
+{% endschema %}

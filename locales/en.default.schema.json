@@ -202,6 +202,33 @@
     },
     "predictive_search": {
       "name": "Predictive search"
+    },
+    "rich_text": {
+      "name": "Rich text"
+    },
+    "makers": {
+      "name": "Makers",
+      "info": "Shows entries from the Artisan metaobject (Content > Metaobjects)."
+    },
+    "lookbook": {
+      "name": "Lookbook look",
+      "pin": "Product pin",
+      "image_position": "Image position",
+      "x": "Horizontal position",
+      "y": "Vertical position"
+    },
+    "contact": {
+      "name": "Contact form",
+      "details": "Contact details"
+    },
+    "faq": {
+      "name": "FAQ",
+      "block": "Question",
+      "question": "Question",
+      "answer": "Answer"
+    },
+    "article": {
+      "show_author": "Show author"
     }
   }
 }

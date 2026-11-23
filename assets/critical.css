@@ -469,6 +469,76 @@ main {
   box-shadow: inset 0 0 0 1px rgb(31 27 23 / 0.15);
 }
 
+/** Page heading for collection, search and blog pages */
+.collection-hero {
+  display: grid;
+  gap: 1rem;
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+.collection-hero__text {
+  max-width: 36rem;
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+}
+
+/** Native <details> accordion: product tabs, FAQ */
+.accordion {
+  border-block: 1px solid var(--color-line);
+}
+.accordion + .accordion {
+  border-top: 0;
+}
+.accordion summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 3.5rem;
+  list-style: none;
+  cursor: pointer;
+}
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+.accordion summary .icon {
+  flex: none;
+  width: 1rem;
+  transition: transform 200ms ease;
+}
+.accordion[open] summary .icon {
+  transform: rotate(180deg);
+}
+.accordion__content {
+  padding-bottom: 1.25rem;
+  color: var(--color-muted);
+}
+
+/** Merchant-written rich text: pages and journal articles */
+.rte > * + * {
+  margin-top: 1.25em;
+}
+.rte :is(h2, h3, h4) {
+  margin-top: 2em;
+}
+.rte h2 { font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem); }
+.rte h3 { font-size: 1.5rem; }
+.rte :is(ul, ol) {
+  padding-left: 1.25em;
+}
+.rte li + li {
+  margin-top: 0.5em;
+}
+.rte img {
+  border-radius: var(--radius);
+}
+.rte blockquote {
+  margin-block: 2em;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--color-accent);
+  font-family: var(--font-heading--family);
+  font-size: 1.5rem;
+  line-height: 1.35;
+}
+
 /** Fade-up on scroll. Only active when JS runs and the visitor allows motion. */
 @media (prefers-reduced-motion: no-preference) {
   .js [data-reveal] {

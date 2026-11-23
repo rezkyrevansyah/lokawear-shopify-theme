@@ -1,0 +1,102 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "layout": "overlay",
+        "text_position": "left",
+        "image": "shopify://shop_images/lokawear-about-hero.jpg",
+        "height": 80,
+        "overlay": 45,
+        "color_scheme": "background",
+        "eyebrow": "Our craft",
+        "heading": "Three crafts. <em>One everyday wardrobe.</em>",
+        "text": "<p>Lurik from Klaten, tenun ikat from Troso, batik cap from Pekalongan. We cut them into clothes you can wear every week.</p>",
+        "button_label": "Shop the collection",
+        "button_link": "shopify://collections/all",
+        "button_2_label": "",
+        "button_2_link": ""
+      }
+    },
+    "intro": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "background",
+        "alignment": "center",
+        "show_lurik": true,
+        "eyebrow": "Why Lokawear",
+        "heading": "Cloth with a <em>hometown</em>",
+        "text": "<p>Indonesia has some of the most patient textile traditions in the world, yet most of it ends up folded away for weddings and ceremonies. We think it belongs in daily life.</p><p>So we work directly with small family workshops, pay for cloth before it is woven, and design simple shapes that let the fabric do the talking.</p>",
+        "button_label": "",
+        "button_link": ""
+      }
+    },
+    "crafts": {
+      "type": "image-with-text",
+      "blocks": {
+        "lurik": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/lokawear-about-loom.jpg",
+            "eyebrow": "Lurik · Klaten",
+            "heading": "Stripes counted by hand",
+            "text": "<p>Lurik is woven on a wooden ATBM loom, one pass of the shuttle at a time. The stripe is built into the cloth, so it never fades or cracks the way a print does.</p><p>A skilled weaver makes about three metres a day.</p>",
+            "button_label": "Shop lurik",
+            "button_link": "/search?q=lurik&type=product"
+          }
+        },
+        "tenun": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/lokawear-about-yarn.jpg",
+            "eyebrow": "Tenun ikat · Troso",
+            "heading": "Dyed before it is woven",
+            "text": "<p>In tenun ikat, bundles of thread are tied and dyed before they reach the loom. The pattern only appears as the cloth is woven, with the soft, feathered edges that machines cannot copy.</p>",
+            "button_label": "Shop tenun",
+            "button_link": "/search?q=tenun&type=product"
+          }
+        },
+        "batik": {
+          "type": "row",
+          "settings": {
+            "image": "shopify://shop_images/lokawear-about-batik.jpg",
+            "eyebrow": "Batik cap · Pekalongan",
+            "heading": "Stamped in copper and wax",
+            "text": "<p>Batik cap uses hand-forged copper stamps dipped in hot wax, pressed row by row across the cloth. Each colour needs its own round of wax and dye, so a two-colour piece takes days.</p>",
+            "button_label": "Shop batik",
+            "button_link": "/search?q=batik&type=product"
+          }
+        }
+      },
+      "block_order": ["lurik", "tenun", "batik"],
+      "settings": {
+        "image_position": "left",
+        "ratio": "portrait",
+        "color_scheme": "surface",
+        "show_lurik": true
+      }
+    },
+    "makers": {
+      "type": "makers",
+      "settings": {
+        "eyebrow": "The makers",
+        "heading": "Hands behind the cloth",
+        "text": "<p>Every Lokawear piece names the workshop it came from. These are the people we work with today.</p>"
+      }
+    },
+    "closing": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "primary",
+        "alignment": "center",
+        "show_lurik": true,
+        "eyebrow": "Made slowly, on purpose",
+        "heading": "Small batches. Fair prices. No dead stock.",
+        "text": "<p>We produce in runs of a few dozen, restock only what sells, and pay our makers before the cloth leaves the loom.</p>",
+        "button_label": "See the lookbook",
+        "button_link": "/pages/lookbook"
+      }
+    }
+  },
+  "order": ["hero", "intro", "crafts", "makers", "closing"]
+}
