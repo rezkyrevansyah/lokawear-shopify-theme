@@ -3,7 +3,7 @@
     <a href="{{ blog.url }}" class="label text-muted article__blog">{{ blog.title }}</a>
     <h1 class="article__title">{{ article.title }}</h1>
     <p class="text-muted">
-      {{ article.published_at | time_tag: format: 'month_day_year' }}
+      {{ article.published_at | time_tag: format: 'date' }}
       {%- if section.settings.show_author %} · {{ article.author }}{% endif -%}
     </p>
   </header>

@@ -33,7 +33,7 @@
     {%- endif -%}
   </a>
   <div class="article-card__body">
-    <p class="label text-muted">{{ article.published_at | time_tag: format: 'month_day_year' }}</p>
+    <p class="label text-muted">{{ article.published_at | time_tag: format: 'date' }}</p>
     <h2 class="article-card__title">
       <a href="{{ article.url }}">{{ article.title }}</a>
     </h2>

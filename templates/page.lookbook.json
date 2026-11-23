@@ -16,10 +16,27 @@
     "look_1": {
       "type": "lookbook",
       "blocks": {
-        "p1": { "type": "pin", "settings": { "product": "lurik-knit-polo", "x": 30, "y": 38 } },
-        "p2": { "type": "pin", "settings": { "product": "indigo-wide-trousers", "x": 31, "y": 75 } }
+        "p1": {
+          "type": "pin",
+          "settings": {
+            "product": "lurik-knit-polo",
+            "x": 52,
+            "y": 48
+          }
+        },
+        "p2": {
+          "type": "pin",
+          "settings": {
+            "product": "indigo-wide-trousers",
+            "x": 55,
+            "y": 88
+          }
+        }
       },
-      "block_order": ["p1", "p2"],
+      "block_order": [
+        "p1",
+        "p2"
+      ],
       "settings": {
         "image": "shopify://shop_images/lokawear-look-1.jpg",
         "image_position": "left",
@@ -31,11 +48,36 @@
     "look_2": {
       "type": "lookbook",
       "blocks": {
-        "p1": { "type": "pin", "settings": { "product": "tenun-trim-tee", "x": 34, "y": 38 } },
-        "p2": { "type": "pin", "settings": { "product": "lurik-overshirt", "x": 62, "y": 36 } },
-        "p3": { "type": "pin", "settings": { "product": "indigo-work-shirt", "x": 60, "y": 62 } }
+        "p1": {
+          "type": "pin",
+          "settings": {
+            "product": "tenun-trim-tee",
+            "x": 34,
+            "y": 52
+          }
+        },
+        "p2": {
+          "type": "pin",
+          "settings": {
+            "product": "lurik-overshirt",
+            "x": 70,
+            "y": 53
+          }
+        },
+        "p3": {
+          "type": "pin",
+          "settings": {
+            "product": "indigo-wide-trousers",
+            "x": 66,
+            "y": 79
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3"
+      ],
       "settings": {
         "image": "shopify://shop_images/lokawear-look-2.jpg",
         "image_position": "right",
@@ -47,10 +89,27 @@
     "look_3": {
       "type": "lookbook",
       "blocks": {
-        "p1": { "type": "pin", "settings": { "product": "batik-cap-kimono-jacket", "x": 55, "y": 40 } },
-        "p2": { "type": "pin", "settings": { "product": "linen-camp-shirt", "x": 44, "y": 62 } }
+        "p1": {
+          "type": "pin",
+          "settings": {
+            "product": "batik-cap-kimono-jacket",
+            "x": 74,
+            "y": 50
+          }
+        },
+        "p2": {
+          "type": "pin",
+          "settings": {
+            "product": "sarong-pants",
+            "x": 45,
+            "y": 80
+          }
+        }
       },
-      "block_order": ["p1", "p2"],
+      "block_order": [
+        "p1",
+        "p2"
+      ],
       "settings": {
         "image": "shopify://shop_images/lokawear-look-3.jpg",
         "image_position": "left",
@@ -64,5 +123,11 @@
       "settings": {}
     }
   },
-  "order": ["intro", "look_1", "look_2", "look_3", "newsletter"]
+  "order": [
+    "intro",
+    "look_1",
+    "look_2",
+    "look_3",
+    "newsletter"
+  ]
 }
