@@ -25,9 +25,11 @@
             aria-label="{{ 'products.zoom' | t: index: forloop.index, count: media_count }}"
           >
             {%- liquid
+              assign preload = false
               if forloop.first
                 assign loading = 'eager'
                 assign priority = 'high'
+                assign preload = true
               else
                 assign loading = 'lazy'
                 assign priority = 'auto'
@@ -37,6 +39,7 @@
               media.preview_image
               | image_url: width: 1800
               | image_tag:
+                preload: preload,
                 widths: '540, 720, 900, 1080, 1440, 1800',
                 sizes: '(min-width: 990px) 52vw, 100vw',
                 loading: loading,

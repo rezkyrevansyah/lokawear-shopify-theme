@@ -72,7 +72,8 @@
     "price_from": "From",
     "price_to": "To",
     "pagination": "Pagination",
-    "empty": "No products match these filters."
+    "empty": "No products match these filters.",
+    "products": "Products"
   },
   "gift_card": {
     "add_to_apple_wallet": "Add to Apple Wallet",

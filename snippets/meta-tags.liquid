@@ -97,9 +97,8 @@
   href="{{ canonical_url }}"
 >
 
-{% if page_description %}
-  <meta
-    name="description"
-    content="{{ page_description | escape }}"
-  >
-{% endif %}
+{%- comment -%} Pages without their own description fall back to the store description. {%- endcomment -%}
+<meta
+  name="description"
+  content="{{ og_description | escape }}"
+>

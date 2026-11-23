@@ -9,6 +9,8 @@
   {% render 'product-grid', products: collection.products, paginate: paginate %}
 {% enddoc %}
 
+{%- comment -%} Card titles are h3, so give the grid an h2 to keep the heading outline sequential. {%- endcomment -%}
+<h2 class="visually-hidden">{{ 'collections.products' | t }}</h2>
 <ul class="product-grid" role="list">
   {%- for product in products -%}
     {%- liquid
